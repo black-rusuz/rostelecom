@@ -12,13 +12,19 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  String get url => '192.168.1.217';
+  String get url => 'http://192.168.1.217';
 
   Map<String, String> get headers => {};
 
   @override
   Future<bool> testConnection() async {
-    final response = await client.get(url);
+    final response = await client.post(
+      url,
+      data: {
+        'username': 'ruslan@mail.com',
+        'password': '123456789',
+      },
+    );
     return (response.statusCode == 200 && response.data.contains('aaaaa'));
   }
 }

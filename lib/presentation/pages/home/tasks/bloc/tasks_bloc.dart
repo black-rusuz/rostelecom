@@ -16,4 +16,6 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       // TODO: implement event handler
     });
   }
+
+  void test() => _repository.testConnection();
 }

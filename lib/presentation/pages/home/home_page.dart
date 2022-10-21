@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'tasks/bloc/tasks_bloc.dart';
 import 'tasks/tasks_fragment.dart';
 
 export 'tasks/bloc/tasks_bloc.dart';
@@ -26,23 +28,15 @@ class _HomePageState extends State<HomePage> {
     const SizedBox(),
   ];
 
-  BottomNavigationBarItem navItem(Icon icon) =>
-      BottomNavigationBarItem(label: '', icon: icon);
-
-  FloatingActionButton? get button => selectedIndex == 0
-      ? FloatingActionButton.extended(
-          onPressed: () {},
-          icon: const Icon(Icons.local_drink_rounded),
-          label: const Text('Поиск'),
-        )
-      : null;
+  BottomNavigationBarItem navItem(IconData icon) =>
+      BottomNavigationBarItem(label: '', icon: Icon(icon));
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Container(
-          margin: const EdgeInsets.all(4),
+        leading: Padding(
+          padding: const EdgeInsets.all(4),
           child: ClipOval(
             child: CachedNetworkImage(
               imageUrl: 'https://github.com/gsusha.png',
@@ -51,17 +45,21 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: pages[selectedIndex],
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: context.read<TasksBloc>().test,
+        icon: const Icon(Icons.local_drink_rounded),
+        label: const Text('Поиск'),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: setIndex,
         items: [
-          navItem(const Icon(Icons.tune_rounded)),
-          navItem(const Icon(Icons.liquor_rounded)),
-          navItem(const Icon(Icons.insert_chart_outlined_outlined)),
-          navItem(const Icon(Icons.settings_rounded)),
+          navItem(Icons.tune_rounded),
+          navItem(Icons.liquor_rounded),
+          navItem(Icons.insert_chart_outlined_outlined),
+          navItem(Icons.settings_rounded),
         ],
       ),
-      floatingActionButton: button,
     );
   }
 }
