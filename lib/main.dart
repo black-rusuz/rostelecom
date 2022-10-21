@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
       case HomePage.name:
         return router(MultiBlocProvider(
           providers: [
-            BlocProvider(create: (_) => sl<LoginBloc>()),
+            BlocProvider(create: (_) => sl<TasksBloc>()),
           ],
           child: const HomePage(),
         ));
