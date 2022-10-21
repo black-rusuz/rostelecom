@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'injection.dart';
+import 'presentation/pages/home/home_page.dart';
 import 'presentation/pages/login/login_page.dart';
 
 void main() {
@@ -17,9 +18,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Rostelecom',
-      onGenerateRoute: routeByName,
-      initialRoute: LoginPage.name,
       theme: theme,
+      onGenerateRoute: routeByName,
+      initialRoute: HomePage.name,
     );
   }
 
@@ -29,29 +30,37 @@ class MyApp extends StatelessWidget {
   MaterialPageRoute? routeByName(RouteSettings settings) {
     switch (settings.name) {
       case LoginPage.name:
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (_) => sl<LoginBloc>(),
-            child: const LoginPage(),
-          ),
-        );
+        return router(BlocProvider(
+          create: (_) => sl<LoginBloc>(),
+          child: const LoginPage(),
+        ));
+      case HomePage.name:
+        return router(MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => sl<LoginBloc>()),
+          ],
+          child: const HomePage(),
+        ));
     }
     return null;
   }
 
   ThemeData get theme => ThemeData(
-        brightness: Brightness.dark,
-        //primarySwatch: Styles.blue,
+        primarySwatch: Colors.blue,
         //scaffoldBackgroundColor: Styles.bg,
         //iconTheme: const IconThemeData(color: Styles.icon),
-        textTheme: GoogleFonts.ptSansTextTheme().apply(
-          bodyColor: Colors.white,
-          // displayColor: Colors.red,
-        ),
+        textTheme: GoogleFonts.ptSansTextTheme(),
         appBarTheme: const AppBarTheme(
           color: Colors.transparent,
           shadowColor: Colors.transparent,
           // iconTheme: IconThemeData(color: Colors.black),
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          type: BottomNavigationBarType.fixed,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Colors.grey,
         ),
         inputDecorationTheme: const InputDecorationTheme(
           filled: true,
