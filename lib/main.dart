@@ -62,13 +62,10 @@ class MyApp extends StatelessWidget {
           selectedItemColor: Colors.blue,
           unselectedItemColor: Colors.grey,
         ),
-        inputDecorationTheme: const InputDecorationTheme(
-          filled: true,
-          //fillColor: Styles.inputBg,
-          //hoverColor: Styles.inputBg,
+        inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
-            //borderRadius: Styles.borderRadius,
+            borderRadius: BorderRadius.circular(10),
           ),
         ),
         elevatedButtonTheme: const ElevatedButtonThemeData(

@@ -35,14 +35,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.all(4),
-          child: ClipOval(
-            child: CachedNetworkImage(
-              imageUrl: 'https://github.com/gsusha.png',
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(4),
+            child: ClipOval(
+              child: CachedNetworkImage(
+                imageUrl: 'https://github.com/gsusha.png',
+              ),
             ),
           ),
-        ),
+        ],
       ),
       body: pages[selectedIndex],
       floatingActionButton: FloatingActionButton.extended(

@@ -14,17 +14,27 @@ class RepositoryImpl extends Repository {
   @override
   String get url => 'http://192.168.1.217';
 
-  Map<String, String> get headers => {};
+  final Map<String, String> headers = {
+    'Content-Type': 'application/json',
+  };
+
+  final options = Options(
+    followRedirects: false,
+    validateStatus: (status) => status! < 500,
+  );
 
   @override
   Future<bool> testConnection() async {
     final response = await client.post(
-      url,
+      '$url/login',
       data: {
-        'username': 'ruslan@mail.com',
+        'email': 'ruslan@mail.com',
         'password': '123456789',
       },
     );
-    return (response.statusCode == 200 && response.data.contains('aaaaa'));
+    print(response.statusCode);
+    print(response.headers);
+    print(response.data);
+    return response.statusCode == 200;
   }
 }
