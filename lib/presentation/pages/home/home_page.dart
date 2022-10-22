@@ -10,6 +10,7 @@ import 'task_detail/task_detail.dart';
 import 'tasks/bloc/tasks_bloc.dart';
 import 'tasks/tasks_fragment.dart';
 
+export 'notes/bloc/notes_bloc.dart';
 export 'tasks/bloc/tasks_bloc.dart';
 
 class HomePage extends StatefulWidget {

@@ -39,6 +39,7 @@ class MyApp extends StatelessWidget {
         return router(MultiBlocProvider(
           providers: [
             BlocProvider(create: (_) => sl<TasksBloc>()..add(TasksInit())),
+            BlocProvider(create: (_) => sl<NotesBloc>()..add(NotesInit())),
           ],
           child: const HomePage(),
         ));

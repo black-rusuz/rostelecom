@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../domain/repository.dart';
+import 'model/note_model.dart';
 import 'model/task_model.dart';
 import 'model/user_model.dart';
 import 'utils.dart';
@@ -60,5 +61,17 @@ class RepositoryImpl extends Repository {
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
     Utils.printJson(response.data, true);
     return (response.data as List).map((e) => TaskModel.fromJson(e)).toList();
+  }
+
+  @override
+  Future<NoteModel> addNote(TaskModel task) {
+    // TODO: implement addNote
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<NoteModel>> getAllNotes() {
+    // TODO: implement getAllNotes
+    throw UnimplementedError();
   }
 }
