@@ -53,7 +53,12 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<List<TaskModel>> getAllTasks() {
-    return Future.value([]);
+  Future<List<TaskModel>> getAllTasks() async {
+    final sw = Stopwatch()..start();
+    debugPrint('ALL TASKS');
+    final response = await client.get('$url/all-task');
+    debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
+    Utils.printJson(response.data, true);
+    return (response.data as List).map((e) => TaskModel.fromJson(e)).toList();
   }
 }
