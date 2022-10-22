@@ -33,13 +33,13 @@ class BaseButton extends StatelessWidget {
           if (icon != null)
             Padding(
               padding: const EdgeInsets.only(right: 10),
-              child: Icon(icon, size: 20, color: textColor),
+              child: Icon(icon, size: 20, color: textColor ?? Styles.greyColor),
             ),
           Text(
             label,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w600,
-              color: Colors.white,
+              color: textColor ?? Styles.greyColor,
             ),
           ),
         ],

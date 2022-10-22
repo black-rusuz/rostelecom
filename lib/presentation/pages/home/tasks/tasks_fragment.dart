@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../styles.dart';
+import '../../../widgets/base_button.dart';
 import '../../../widgets/base_card.dart';
 import '../../../widgets/base_text_field.dart';
 
@@ -20,15 +21,10 @@ class TasksFragment extends StatelessWidget {
           //const TasksBoard(),
           GestureDetector(
             onTap: () {},
-            child: Container(
-              alignment: Alignment.center,
-              child: Row(
-                children: const [
-                  Icon(Icons.add),
-                  Text('Новая задача'),
-                ],
-              ),
-            ),
+            child: const BaseButton(
+              label: 'Новая задача',
+              icon: Icons.add,
+            )
           )
         ],
       ),
