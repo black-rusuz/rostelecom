@@ -9,11 +9,6 @@ abstract class Repository {
   final currentUser = BehaviorSubject<UserModel>();
   final tasks = BehaviorSubject<List<UserModel>>();
 
-  // * TEST
-  Future<bool> testConnection();
-
-  Future<bool> addTestTask();
-
   // * PROD
   Future<UserModel> login(String login, String password);
 
