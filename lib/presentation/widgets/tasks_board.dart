@@ -7,8 +7,8 @@ import 'base_card.dart';
 class TasksBoard extends StatelessWidget {
   const TasksBoard({super.key});
 
-  final TextStyle textStyle =
-      const TextStyle(fontWeight: FontWeight.w600, fontSize: 18);
+  static const TextStyle textStyle =
+      TextStyle(fontWeight: FontWeight.w600, fontSize: 18);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class TasksBoard extends StatelessWidget {
       length: 4,
       child: Column(
         children: [
-          TabBar(
+          const TabBar(
             labelPadding: EdgeInsets.zero,
             indicatorColor: Colors.transparent,
             tabs: [
@@ -134,8 +134,10 @@ class Tag extends StatelessWidget {
         color: Styles.tagBgColor,
         borderRadius: BorderRadius.circular(50),
       ),
-      child: const Text('Назначено',
-          style: TextStyle(fontSize: 10, color: Styles.greyColor)),
+      child: const Text(
+        'Назначено',
+        style: TextStyle(fontSize: 10, color: Styles.greyColor),
+      ),
     );
   }
 }
