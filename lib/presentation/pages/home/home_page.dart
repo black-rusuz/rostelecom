@@ -49,7 +49,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(titles[selectedIndex]),
+        title: Text(
+          titles[selectedIndex],
+          style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.all(4),
