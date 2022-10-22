@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'injection.dart';
 import 'presentation/pages/home/home_page.dart';
 import 'presentation/pages/login/login_page.dart';
+import 'styles.dart';
 
 void main() {
   configureDependencies();
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Rostelecom',
-      theme: theme,
+      theme: Styles.theme,
       onGenerateRoute: routeByName,
       initialRoute: HomePage.name,
     );
@@ -44,44 +44,4 @@ class MyApp extends StatelessWidget {
     }
     return null;
   }
-
-  ThemeData get theme => ThemeData(
-        primarySwatch: Colors.blue,
-        //scaffoldBackgroundColor: Styles.bg,
-        //iconTheme: const IconThemeData(color: Styles.icon),
-        textTheme: GoogleFonts.ptSansTextTheme(),
-        appBarTheme: const AppBarTheme(
-          color: Colors.transparent,
-          shadowColor: Colors.transparent,
-          titleTextStyle: TextStyle(color: Colors.black),
-          // iconTheme: IconThemeData(color: Colors.black),
-        ),
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          type: BottomNavigationBarType.fixed,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.grey,
-        ),
-        inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-        elevatedButtonTheme: const ElevatedButtonThemeData(
-          style: ButtonStyle(
-              //padding: MaterialStatePropertyAll(
-              //  EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-              //),
-              //shape: MaterialStatePropertyAll(
-              //  RoundedRectangleBorder(borderRadius: Styles.borderRadius),
-              //),
-              ),
-        ),
-        tabBarTheme: const TabBarTheme(
-          labelColor: Colors.black,
-          unselectedLabelColor: Colors.grey,
-        ),
-      );
 }

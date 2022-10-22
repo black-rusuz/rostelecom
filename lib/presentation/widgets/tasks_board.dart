@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import 'base_card.dart';
+
 class TasksBoard extends StatelessWidget {
   const TasksBoard({super.key});
 
@@ -64,9 +66,8 @@ class TaskCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return BaseCard(
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
       child: IntrinsicHeight(
         child: Row(
           children: [

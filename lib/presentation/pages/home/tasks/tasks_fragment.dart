@@ -17,58 +17,10 @@ class TasksFragment extends StatelessWidget {
               labelText: 'Найти задачу...',
             ),
           ),
-          BaseCard(
-            color: Colors.white,
-            borderRadius: 20,
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    BaseCard(
-                      color: Colors.grey,
-                      borderRadius: 20,
-                      child: Column(
-                        children: const [
-                          Icon(Icons.account_balance),
-                          Text('Задач'),
-                          Text('2'),
-                        ],
-                      ),
-                    ),
-                    BaseCard(
-                      color: Colors.blue,
-                      borderRadius: 20,
-                      child: Column(
-                        children: const [
-                          Icon(Icons.account_balance),
-                          Text('Назначено'),
-                          Text('5'),
-                        ],
-                      ),
-                    ),
-                    BaseCard(
-                      color: Colors.white,
-                      borderRadius: 20,
-                      child: Column(
-                        children: const [
-                          Icon(Icons.account_balance),
-                          Text('Завершено'),
-                          Text('4'),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: const [
-                    Text('Подходит к концу: '),
-                    Text('42%'),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          const TasksBoard(),
+          const SizedBox(height: 20),
+          const StatsCard(),
+          const SizedBox(height: 40),
+          //const TasksBoard(),
           GestureDetector(
             onTap: () {},
             child: Container(
@@ -82,6 +34,98 @@ class TasksFragment extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class StatsCard extends StatelessWidget {
+  const StatsCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BaseCard(
+      padding: const EdgeInsets.all(15),
+      //color: Colors.white,
+      borderRadius: 20,
+      child: Column(
+        children: [
+          Row(
+            children: const [
+              StatCard(
+                color: Colors.grey,
+                icon: Icons.account_balance,
+                title: 'Задач',
+                value: 2,
+              ),
+              SizedBox(width: 10),
+              StatCard(
+                color: Colors.blue,
+                icon: Icons.account_balance,
+                title: 'Назначено',
+                value: 4,
+              ),
+              SizedBox(width: 10),
+              StatCard(
+                color: Colors.white,
+                icon: Icons.account_balance,
+                title: 'Завершено',
+                value: 5,
+              ),
+            ],
+          ),
+          const SizedBox(height: 18),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text('Подходит к концу: '),
+              Text('42%'),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class StatCard extends StatelessWidget {
+  final Color color;
+  final IconData icon;
+  final String title;
+  final int value;
+
+  const StatCard({
+    super.key,
+    required this.color,
+    required this.icon,
+    required this.title,
+    required this.value,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: BaseCard(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+        color: color,
+        borderRadius: 20,
+        child: Column(
+          children: [
+            Container(
+              width: 35,
+              height: 35,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(icon, size: 20),
+            ),
+            const SizedBox(height: 15),
+            Text(title),
+            const SizedBox(height: 15),
+            Text(value.toString()),
+          ],
+        ),
       ),
     );
   }
