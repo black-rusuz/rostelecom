@@ -1,14 +1,14 @@
-import 'package:flutter/cupertino.dart';
-
-import '../../styles.dart';
+import 'package:flutter/material.dart';
 
 class BaseCard extends StatelessWidget {
+  final double borderRadius;
   final Color? color;
   final Widget child;
 
   const BaseCard({
     super.key,
-    this.color,
+    this.color = Colors.black12,
+    this.borderRadius = 10,
     required this.child,
   });
 
@@ -17,7 +17,7 @@ class BaseCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: color,
-        borderRadius: Styles.radius,
+        borderRadius: BorderRadius.circular(borderRadius),
       ),
       child: child,
     );

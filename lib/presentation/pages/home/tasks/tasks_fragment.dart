@@ -19,12 +19,14 @@ class TasksFragment extends StatelessWidget {
           ),
           BaseCard(
             color: Colors.white,
+            borderRadius: 20,
             child: Column(
               children: [
                 Row(
                   children: [
                     BaseCard(
                       color: Colors.grey,
+                      borderRadius: 20,
                       child: Column(
                         children: const [
                           Icon(Icons.account_balance),
@@ -35,6 +37,7 @@ class TasksFragment extends StatelessWidget {
                     ),
                     BaseCard(
                       color: Colors.blue,
+                      borderRadius: 20,
                       child: Column(
                         children: const [
                           Icon(Icons.account_balance),
@@ -45,6 +48,7 @@ class TasksFragment extends StatelessWidget {
                     ),
                     BaseCard(
                       color: Colors.white,
+                      borderRadius: 20,
                       child: Column(
                         children: const [
                           Icon(Icons.account_balance),

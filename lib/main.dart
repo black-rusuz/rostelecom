@@ -53,6 +53,7 @@ class MyApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           color: Colors.transparent,
           shadowColor: Colors.transparent,
+          titleTextStyle: TextStyle(color: Colors.black),
           // iconTheme: IconThemeData(color: Colors.black),
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(

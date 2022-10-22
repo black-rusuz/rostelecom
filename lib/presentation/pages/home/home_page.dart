@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'notes/notes_fragment.dart';
 import 'tasks/bloc/tasks_bloc.dart';
 import 'tasks/tasks_fragment.dart';
 
@@ -21,9 +22,16 @@ class _HomePageState extends State<HomePage> {
 
   void setIndex(int index) => setState(() => selectedIndex = index);
 
+  final List<String> titles = [
+    'Задачи',
+    'Заметки',
+    '«Горящий» список',
+    'Скрытые задачи',
+  ];
+
   final List<Widget> pages = [
     const TasksFragment(),
-    const SizedBox(),
+    const NotesFragment(),
     const SizedBox(),
     const SizedBox(),
   ];
@@ -35,6 +43,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        title: Text(titles[selectedIndex]),
         actions: [
           Padding(
             padding: const EdgeInsets.all(4),
