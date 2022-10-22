@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../styles.dart';
 import '../../widgets/base_text_field.dart';
 import '../home/home_page.dart';
 import 'bloc/login_bloc.dart';
@@ -29,18 +30,33 @@ class LoginPage extends StatelessWidget {
         }
       },
       child: Scaffold(
-        //backgroundColor: Colors.blue,
+        backgroundColor: Styles.accentColor,
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(35),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text('Авторизация'),
+                const Text(
+                  'Авторизация',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 24,
+                  ),
+                ),
                 const SizedBox(height: 30),
-                BaseTextField('Логин', controller: login),
+                BaseTextField(
+                  'Логин',
+                  controller: login,
+                  icon: const Icon(Icons.person_outline_rounded),
+                ),
                 const SizedBox(height: 15),
-                BaseTextField('Пароль', controller: password),
+                BaseTextField(
+                  'Пароль',
+                  controller: password,
+                  icon: const Icon(Icons.password_rounded),
+                ),
                 const SizedBox(height: 15),
                 ElevatedButton(
                   onPressed: () => context.read<LoginBloc>().add(LoginAuth(

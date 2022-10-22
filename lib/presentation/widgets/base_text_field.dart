@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class BaseTextField extends StatelessWidget {
   final String label;
   final TextEditingController? controller;
+  final Icon? icon;
 
   const BaseTextField(
     this.label, {
     super.key,
     this.controller,
+    this.icon,
   });
 
   @override
@@ -15,7 +17,8 @@ class BaseTextField extends StatelessWidget {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
-        labelText: label,
+        prefixIcon: icon,
+        hintText: label,
       ),
     );
   }
