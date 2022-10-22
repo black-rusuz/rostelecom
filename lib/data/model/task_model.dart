@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import '../utils.dart';
+
 class TaskModel extends Equatable {
   final int id;
   final String name;
@@ -14,34 +16,35 @@ class TaskModel extends Equatable {
   const TaskModel({
     required this.id,
     required this.name,
-    this.description,
+    required this.description,
     required this.duration,
     required this.endTime,
     required this.status,
     required this.isHidden,
     required this.masterId,
-    this.slaveId,
+    required this.slaveId,
   });
 
   factory TaskModel.fromJson(Map<String, dynamic> json) {
     return TaskModel(
-      id: int.parse(json['id']),
+      id: json['id'],
       name: json['name'],
       description: json['description'],
       duration: TaskDuration.fromString(json['term']),
       endTime: DateTime.parse(json['endTime']),
       status: TaskStatus.fromString(json['status']),
-      isHidden: json['hidden'],
-      masterId: int.parse(json['id']),
-      slaveId: int.parse(json['user_id']),
+      isHidden: json['hidden'] > 0,
+      // !! TODO masterId
+      masterId: json['id'],
+      slaveId: json['user_id'],
     );
   }
 
   Map<String, dynamic> toJson() => {
         'name': name,
         'description': description,
-        'term': duration,
-        'endTime': endTime,
+        'term': duration.value,
+        'endTime': Utils.formatDate(endTime),
         'userId': slaveId,
         'hidden': isHidden,
       };

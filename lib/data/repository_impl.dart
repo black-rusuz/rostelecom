@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 import '../domain/repository.dart';
 import 'model/task_model.dart';
 import 'model/user_model.dart';
+import 'utils.dart';
 
 @Singleton(as: Repository)
 class RepositoryImpl extends Repository {
@@ -19,43 +20,7 @@ class RepositoryImpl extends Repository {
 
   // TODO: get from login
   String token =
-      '1A2ClBaodzKVMOxoNY3BHep7QCbPzjebxGBlpIPfjK9HEVUhdIFmxrxIpghmij3G';
-
-  @override
-  Future<bool> testConnection() async {
-    final sw = Stopwatch()..start();
-    debugPrint('TEST');
-    final response = await client.post(
-      '$url/login',
-      data: {
-        'email': 'ruslan@mail.com',
-        'password': '123456789',
-      },
-    );
-    debugPrint('${response.statusCode}: ${sw.elapsed}');
-    debugPrint(response.data.toString());
-    return response.statusCode == 200;
-  }
-
-  @override
-  Future<bool> addTestTask() async {
-    final sw = Stopwatch()..start();
-    debugPrint('TEST ADD');
-    final response = await client.post(
-      '$url/add-task',
-      data: {
-        'name': 'onetask',
-        'description': 'description',
-        'time': '2000-01-01',
-        'endTime': '2000-01-01',
-        'userId': '1',
-        'hidden': 0,
-      },
-    );
-    debugPrint('${response.statusCode}: ${sw.elapsed}');
-    debugPrint(response.data.toString());
-    return response.statusCode == 200;
-  }
+      'I452uu1qPYAmb1nRm1oNkdHTTHnQEfedL7RvChu500KPShpJKpRWNWzNWMXGq9KP';
 
   @override
   Future<UserModel> login(String login, String password) async {
@@ -70,7 +35,7 @@ class RepositoryImpl extends Repository {
     );
     final user = UserModel.fromJson(response.data);
     currentUser.add(user);
-    debugPrint('CODE ${response.statusCode}, TIME: ${sw.elapsed}');
+    debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
     return user;
   }
 
@@ -82,9 +47,9 @@ class RepositoryImpl extends Repository {
       '$url/add-task',
       data: task.toJson(),
     );
-    debugPrint('${response.statusCode}: ${sw.elapsed}');
-    debugPrint(response.data.toString());
-    return TaskModel.fromJson(response.data);
+    debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
+    Utils.printJson(response.data, true);
+    return TaskModel.fromJson(response.data['task']);
   }
 
   @override
