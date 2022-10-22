@@ -11,7 +11,8 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import 'data/repository_impl.dart' as _i5;
 import 'domain/repository.dart' as _i4;
-import 'injection.dart' as _i8;
+import 'injection.dart' as _i9;
+import 'presentation/pages/home/notes/bloc/notes_bloc.dart' as _i8;
 import 'presentation/pages/home/tasks/bloc/tasks_bloc.dart' as _i6;
 import 'presentation/pages/login/bloc/login_bloc.dart'
     as _i7; // ignore_for_file: unnecessary_lambdas
@@ -33,7 +34,8 @@ _i1.GetIt $initGetIt(
   gh.singleton<_i4.Repository>(_i5.RepositoryImpl(client: get<_i3.Dio>()));
   gh.factory<_i6.TasksBloc>(() => _i6.TasksBloc(get<_i4.Repository>()));
   gh.factory<_i7.LoginBloc>(() => _i7.LoginBloc(get<_i4.Repository>()));
+  gh.factory<_i8.NotesBloc>(() => _i8.NotesBloc(get<_i4.Repository>()));
   return get;
 }
 
-class _$RegisterModule extends _i8.RegisterModule {}
+class _$RegisterModule extends _i9.RegisterModule {}
