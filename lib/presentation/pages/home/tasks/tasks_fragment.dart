@@ -1,32 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../styles.dart';
 import '../../../widgets/base_card.dart';
 import '../../../widgets/base_text_field.dart';
 import '../../../widgets/tasks_board.dart';
+import 'bloc/tasks_bloc.dart';
 
 class TasksFragment extends StatelessWidget {
   const TasksFragment({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: const [
-        BaseTextField(
-          'Найти задачу...',
-          icon: Icon(Icons.search_rounded),
-        ),
-        SizedBox(height: 20),
-        StatsCard(),
-        SizedBox(height: 40),
-        TasksBoard(),
-      ],
+    return BlocBuilder<TasksBloc, TasksState>(
+      builder: (context, state) {
+        if (state is TasksSuccess) {
+          return Column(
+            children: [
+              const BaseTextField(
+                'Найти задачу...',
+                icon: Icon(Icons.search_rounded),
+              ),
+              const SizedBox(height: 20),
+              StatsCard(
+                percent: state.percent,
+                total: state.total,
+                assigned: state.assigned,
+                done: state.done,
+              ),
+              const SizedBox(height: 40),
+              const TasksBoard(),
+            ],
+          );
+        }
+        return const Center(child: CircularProgressIndicator());
+      },
     );
   }
 }
 
 class StatsCard extends StatelessWidget {
-  const StatsCard({super.key});
+  final int total;
+  final int assigned;
+  final int done;
+  final int percent;
+
+  const StatsCard(
+      {super.key,
+      required this.percent,
+      required this.total,
+      required this.assigned,
+      required this.done});
 
   @override
   Widget build(BuildContext context) {
@@ -38,22 +62,22 @@ class StatsCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              const StatCard(
+              StatCard(
                 color: Styles.darkColor,
                 icon: Icons.folder_copy_outlined,
-                iconBgColor: Color(0xFF5C627A),
+                iconBgColor: const Color(0xFF5C627A),
                 title: 'Задач',
                 textColor: Colors.white,
-                value: 2,
+                value: total,
               ),
               const SizedBox(width: 10),
-              const StatCard(
+              StatCard(
                 color: Styles.accentColor,
                 icon: Icons.inventory_rounded,
-                iconBgColor: Color(0xFF5999F6),
+                iconBgColor: const Color(0xFF5999F6),
                 title: 'Назначено',
                 textColor: Colors.white,
-                value: 4,
+                value: assigned,
               ),
               const SizedBox(width: 10),
               StatCard(
@@ -62,7 +86,7 @@ class StatsCard extends StatelessWidget {
                 iconBgColor: const Color(0xFFECEEF3),
                 title: 'Завершено',
                 textColor: Styles.secondaryColor,
-                value: 5,
+                value: done,
                 border: Border.all(width: 1, color: const Color(0xFFF3F3F7)),
               ),
             ],
@@ -70,12 +94,12 @@ class StatsCard extends StatelessWidget {
           const SizedBox(height: 18),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text('Подходит к концу: ',
+            children: [
+              const Text('Подходит к концу: ',
                   style: TextStyle(color: Styles.greyColor)),
               Text(
-                '42%',
-                style: TextStyle(
+                '$percent%',
+                style: const TextStyle(
                   color: Styles.accentColor,
                   fontWeight: FontWeight.w600,
                   fontSize: 16,

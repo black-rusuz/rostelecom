@@ -28,5 +28,6 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       masterId: 0,
       slaveId: null,
     ));
+    emit(const TasksSuccess(total: 0, assigned: 0, done: 0, percent: 0, dayTasks: [], weekTasks: [], monthTasks: [], quarterTasks: []));
   }
 }
