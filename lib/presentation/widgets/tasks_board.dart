@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../styles.dart';
 import 'base_card.dart';
 
 class TasksBoard extends StatelessWidget {
@@ -35,7 +36,9 @@ class TasksBoard extends StatelessWidget {
                   Column(
                     children: const [
                       TaskCard(),
+                      SizedBox(height: 14),
                       TaskCard(),
+                      SizedBox(height: 14),
                       TaskCard(),
                     ],
                   ),
@@ -76,6 +79,7 @@ class TaskCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseCard(
+      color: Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
       child: IntrinsicHeight(
         child: Row(
@@ -98,7 +102,9 @@ class TaskCard extends StatelessWidget {
                     Row(
                       children: const [
                         Tag(),
+                        SizedBox(width: 8),
                         Tag(),
+                        SizedBox(width: 8),
                         Tag(),
                       ],
                     ),
@@ -128,10 +134,11 @@ class Tag extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
       decoration: BoxDecoration(
-        color: Colors.grey,
+        color: Styles.tagBgColor,
         borderRadius: BorderRadius.circular(50),
       ),
-      child: const Text('Назначено', style: TextStyle(fontSize: 10)),
+      child: const Text('Назначено',
+          style: TextStyle(fontSize: 10, color: Styles.greyColor)),
     );
   }
 }

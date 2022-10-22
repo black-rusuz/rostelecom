@@ -92,4 +92,6 @@ class Styles {
   static const redColor = Color(0xFFEF3E40);
 
   static const greyColor = Color(0xFF92959D);
+
+  static const tagBgColor = Color(0xFFF1F2F2);
 }
