@@ -14,18 +14,20 @@ class TasksFragment extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
       child: Column(
         children: [
-          const BaseTextField('Найти задачу...'),
+          const BaseTextField(
+            'Найти задачу...',
+            icon: Icon(Icons.search_rounded),
+          ),
           const SizedBox(height: 20),
           const StatsCard(),
           const SizedBox(height: 40),
           //const TasksBoard(),
           GestureDetector(
-            onTap: () {},
-            child: const BaseButton(
-              label: 'Новая задача',
-              icon: Icons.add,
-            )
-          )
+              onTap: () {},
+              child: const BaseButton(
+                label: 'Новая задача',
+                icon: Icons.add,
+              ))
         ],
       ),
     );
@@ -44,8 +46,8 @@ class StatsCard extends StatelessWidget {
       child: Column(
         children: [
           Row(
-            children: const [
-              StatCard(
+            children: [
+              const StatCard(
                 color: Styles.darkColor,
                 icon: Icons.folder_copy_outlined,
                 iconBgColor: Color(0xFF5C627A),
@@ -53,8 +55,8 @@ class StatsCard extends StatelessWidget {
                 textColor: Colors.white,
                 value: 2,
               ),
-              SizedBox(width: 10),
-              StatCard(
+              const SizedBox(width: 10),
+              const StatCard(
                 color: Styles.accentColor,
                 icon: Icons.inventory_rounded,
                 iconBgColor: Color(0xFF5999F6),
@@ -62,14 +64,15 @@ class StatsCard extends StatelessWidget {
                 textColor: Colors.white,
                 value: 4,
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               StatCard(
                 color: Colors.white,
                 icon: Icons.check_circle_rounded,
-                iconBgColor: Color(0xFFECEEF3),
+                iconBgColor: const Color(0xFFECEEF3),
                 title: 'Завершено',
                 textColor: Styles.secondaryColor,
                 value: 5,
+                border: Border.all(width: 1, color: const Color(0xFFF3F3F7)),
               ),
             ],
           ),
@@ -102,6 +105,7 @@ class StatCard extends StatelessWidget {
   final IconData icon;
   final String title;
   final int value;
+  final Border? border;
 
   const StatCard({
     super.key,
@@ -111,6 +115,7 @@ class StatCard extends StatelessWidget {
     required this.value,
     required this.iconBgColor,
     required this.textColor,
+    this.border,
   });
 
   @override
@@ -120,6 +125,7 @@ class StatCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
         color: color,
         borderRadius: 20,
+        border: border,
         child: Column(
           children: [
             Container(

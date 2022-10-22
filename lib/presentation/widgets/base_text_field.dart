@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../styles.dart';
+
 class BaseTextField extends StatelessWidget {
   final String label;
   final TextEditingController? controller;
@@ -14,11 +16,17 @@ class BaseTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        prefixIcon: icon,
-        hintText: label,
+    return Container(
+      decoration: const BoxDecoration(
+        boxShadow: Styles.shadows,
+      ),
+      child: TextField(
+        controller: controller,
+        style: const TextStyle(fontSize: 14),
+        decoration: InputDecoration(
+          prefixIcon: icon,
+          hintText: label,
+        ),
       ),
     );
   }

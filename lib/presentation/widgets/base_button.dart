@@ -32,7 +32,7 @@ class BaseButton extends StatelessWidget {
         children: [
           if (icon != null)
             Padding(
-              padding: const EdgeInsets.only(right: 10),
+              padding: const EdgeInsets.only(right: 4),
               child: Icon(icon, size: 20, color: textColor ?? Styles.greyColor),
             ),
           Text(

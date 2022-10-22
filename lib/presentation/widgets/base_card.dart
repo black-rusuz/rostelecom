@@ -7,12 +7,14 @@ class BaseCard extends StatelessWidget {
   final double borderRadius;
   final Color color;
   final Widget child;
+  final Border? border;
 
   const BaseCard({
     super.key,
     this.padding = EdgeInsets.zero,
     this.color = Colors.black12,
     this.borderRadius = 10,
+    this.border,
     required this.child,
   });
 
@@ -22,6 +24,7 @@ class BaseCard extends StatelessWidget {
       padding: padding,
       decoration: BoxDecoration(
         color: color,
+        border: border,
         borderRadius: BorderRadius.circular(borderRadius),
         boxShadow: Styles.shadows,
       ),
