@@ -9,22 +9,29 @@ class SettingsFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Column(
-          children: const [
-            BaseTextSwitch(label: 'Уведомления'),
-            SizedBox(height: 15),
-            BaseTextSwitch(label: 'Тёмная тема'),
-          ],
-        ),
-        SizedBox(height: 15),
-        const BaseButton(
-          label: 'Выйти',
-          icon: Icons.exit_to_app_rounded,
-          textColor: Styles.redColor,
-        )
-      ],
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.73,
+      child: Stack(
+        children: [
+          Column(
+            children: const [
+              BaseTextSwitch(label: 'Уведомления'),
+              SizedBox(height: 15),
+              BaseTextSwitch(label: 'Тёмная тема'),
+            ],
+          ),
+          const Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: BaseButton(
+              label: 'Выйти',
+              icon: Icons.exit_to_app_rounded,
+              textColor: Styles.redColor,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
