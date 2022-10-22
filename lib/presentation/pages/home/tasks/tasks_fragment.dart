@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../styles.dart';
 import '../../../widgets/base_card.dart';
+import '../../../widgets/base_text_field.dart';
 
 class TasksFragment extends StatelessWidget {
   const TasksFragment({super.key});
@@ -12,11 +13,7 @@ class TasksFragment extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
       child: Column(
         children: [
-          const TextField(
-            decoration: InputDecoration(
-              labelText: 'Найти задачу...',
-            ),
-          ),
+          const BaseTextField('Найти задачу...'),
           const SizedBox(height: 20),
           const StatsCard(),
           const SizedBox(height: 40),
