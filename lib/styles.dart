@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Styles {
+  static BorderRadius radius = BorderRadius.circular(20);
+
   static const List<BoxShadow> shadows = [
     BoxShadow(
       color: Colors.black,
