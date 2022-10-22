@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'hidden/hidden_fragment.dart';
 import 'hot/hot_fragment.dart';
 import 'notes/notes_fragment.dart';
+import 'settings/settings_fragment.dart';
 import 'tasks/bloc/tasks_bloc.dart';
 import 'tasks/tasks_fragment.dart';
 
@@ -29,6 +30,7 @@ class _HomePageState extends State<HomePage> {
     'Заметки',
     '«Горящий» список',
     'Скрытые задачи',
+    'Настройки',
   ];
 
   final List<Widget> pages = [
@@ -36,6 +38,7 @@ class _HomePageState extends State<HomePage> {
     const NotesFragment(),
     const HotFragment(),
     const HiddenFragment(),
+    const SettingsFragment(),
   ];
 
   BottomNavigationBarItem navItem(IconData icon) =>
@@ -68,9 +71,10 @@ class _HomePageState extends State<HomePage> {
         currentIndex: selectedIndex,
         onTap: setIndex,
         items: [
-          navItem(Icons.tune_rounded),
-          navItem(Icons.liquor_rounded),
-          navItem(Icons.insert_chart_outlined_outlined),
+          navItem(Icons.home_rounded),
+          navItem(Icons.sticky_note_2_outlined),
+          navItem(Icons.local_fire_department),
+          navItem(Icons.visibility_off_rounded),
           navItem(Icons.settings_rounded),
         ],
       ),
