@@ -7,6 +7,7 @@ import 'hidden/hidden_fragment.dart';
 import 'hot/hot_fragment.dart';
 import 'notes/notes_fragment.dart';
 import 'settings/settings_fragment.dart';
+import 'task_detail/task_detail.dart';
 import 'tasks/bloc/tasks_bloc.dart';
 import 'tasks/tasks_fragment.dart';
 
@@ -39,7 +40,8 @@ class _HomePageState extends State<HomePage> {
     const NotesFragment(),
     const HotFragment(),
     const HiddenFragment(),
-    const SettingsFragment(),
+    // const SettingsFragment(),
+    const TaskDetail(),
   ];
 
   BottomNavigationBarItem navItem(IconData icon) =>
