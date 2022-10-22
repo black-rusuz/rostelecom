@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/model/task_model.dart';
+import '../../data/utils.dart';
 import '../../styles.dart';
 import 'base_card.dart';
 
@@ -81,7 +82,7 @@ class TaskCard extends StatelessWidget {
             Container(
               width: 6,
               decoration: BoxDecoration(
-                color: Colors.red,
+                color: task.color,
                 borderRadius: BorderRadius.circular(50),
               ),
             ),
@@ -90,20 +91,22 @@ class TaskCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Создать приложение для хакатона',
-                    style: TextStyle(fontWeight: FontWeight.w600),
+                  Text(
+                    task.name,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(height: 30),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      const Tag(),
-                      const SizedBox(width: 8),
-                      const Tag(),
-                      const SizedBox(width: 8),
-                      const Tag(),
+                      if (task.isHot) const Tag(Icons.local_fire_department),
+                      if (task.status == TaskStatus.notAssigned)
+                        Tag(Icons.access_time, title: task.status.value),
+                      Tag(
+                        Icons.edit_calendar,
+                        title: Utils.dateToView(task.endTime),
+                      ),
                       const Expanded(child: SizedBox()),
                       ClipOval(
                         child: CachedNetworkImage(
@@ -125,19 +128,36 @@ class TaskCard extends StatelessWidget {
 }
 
 class Tag extends StatelessWidget {
-  const Tag({super.key});
+  final IconData icon;
+  final String? title;
+
+  const Tag(this.icon, {super.key, this.title});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+      margin: const EdgeInsets.only(right: 8),
       decoration: BoxDecoration(
         color: Styles.tagBgColor,
         borderRadius: BorderRadius.circular(50),
       ),
-      child: const Text(
-        'Назначено',
-        style: TextStyle(fontSize: 10, color: Styles.greyColor),
+      child: Row(
+        children: [
+          Icon(icon, size: 10, color: Styles.greyColor),
+          if (title != null)
+            Padding(
+              padding: const EdgeInsets.only(left: 6),
+              child: Text(
+                title!,
+                style: const TextStyle(
+                  fontSize: 10,
+                  height: 1,
+                  color: Styles.greyColor,
+                ),
+              ),
+            ),
+        ],
       ),
     );
   }

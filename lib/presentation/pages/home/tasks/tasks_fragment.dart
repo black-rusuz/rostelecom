@@ -158,8 +158,10 @@ class StatCard extends StatelessWidget {
             const SizedBox(height: 15),
             Text(title, style: TextStyle(color: textColor, fontSize: 12)),
             const SizedBox(height: 15),
-            Text(value.toString(),
-                style: TextStyle(color: textColor, fontSize: 20)),
+            Text(
+              value.toString(),
+              style: TextStyle(color: textColor, fontSize: 20),
+            ),
           ],
         ),
       ),

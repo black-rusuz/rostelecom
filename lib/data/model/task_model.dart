@@ -47,7 +47,7 @@ class TaskModel extends Equatable {
         'name': name,
         'description': description,
         'term': duration.value,
-        'endTime': Utils.formatDate(endTime),
+        'endTime': Utils.dateToJson(endTime),
         'userId': slaveId,
         'hidden': isHidden,
       };
