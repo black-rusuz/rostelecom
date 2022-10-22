@@ -55,5 +55,39 @@ class Styles {
       blurRadius: 5.32,
       offset: Offset(0, 1.2),
     ),
+    BoxShadow(
+      color: Colors.black,
+      blurRadius: 10.02,
+      offset: Offset(0, 2.25),
+    ),
+    BoxShadow(
+      color: Colors.black,
+      blurRadius: 17.87,
+      offset: Offset(0, 4.02),
+    ),
+    BoxShadow(
+      color: Colors.black,
+      blurRadius: 33.42,
+      offset: Offset(0, 7.52),
+    ),
+    BoxShadow(
+      color: Colors.black,
+      blurRadius: 80,
+      offset: Offset(0, 18),
+    ),
   ];
+
+  static const bgColor = Color(0xFFFBFBFC);
+
+  static const darkColor = Color(0xFF454D69);
+
+  static const accentColor = Color(0xFF3380F3);
+
+  static const primaryColor = Color(0xFF0F0F10);
+
+  static const secondaryColor = Color(0xFF1A1743);
+
+  static const greenColor = Color(0xFF43B098);
+
+  static const redColor = Color(0xFFEF3E40);
 }
