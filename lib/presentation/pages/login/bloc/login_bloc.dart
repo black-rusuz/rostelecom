@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -12,8 +14,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final Repository _repository;
 
   LoginBloc(this._repository) : super(LoginInitial()) {
-    on<LoginEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<LoginAuth>(_auth);
+  }
+
+  void _auth(LoginAuth event, Emitter<LoginState> emit) async {
+    try {
+      await _repository.login(event.login, event.password);
+      emit(LoginSuccess());
+    } on DioError catch (e) {
+      emit(LoginError(e.message));
+    }
   }
 }

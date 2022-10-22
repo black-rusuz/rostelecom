@@ -8,3 +8,17 @@ abstract class LoginState extends Equatable {
 }
 
 class LoginInitial extends LoginState {}
+
+class LoginSuccess extends LoginState {}
+
+class LoginError extends LoginState {
+  final String error;
+
+  const LoginError(this.error);
+
+  @override
+  List<Object> get props => [
+        UniqueKey(),
+        error,
+      ];
+}

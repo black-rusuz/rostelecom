@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       theme: Styles.theme,
       onGenerateRoute: routeByName,
       initialRoute: HomePage.name,
+      //initialRoute: LoginPage.name,
     );
   }
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       case LoginPage.name:
         return router(BlocProvider(
           create: (_) => sl<LoginBloc>(),
-          child: const LoginPage(),
+          child: LoginPage(),
         ));
       case HomePage.name:
         return router(MultiBlocProvider(
