@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../domain/repository.dart';
+import 'model/task_model.dart';
 import 'model/user_model.dart';
 
 @Singleton(as: Repository)
@@ -37,7 +38,7 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<bool> addTask() async {
+  Future<bool> addTestTask() async {
     final sw = Stopwatch()..start();
     debugPrint('TEST ADD');
     final response = await client.post(
@@ -71,5 +72,23 @@ class RepositoryImpl extends Repository {
     currentUser.add(user);
     debugPrint('CODE ${response.statusCode}, TIME: ${sw.elapsed}');
     return user;
+  }
+
+  @override
+  Future<TaskModel> addTask(TaskModel task) async {
+    final sw = Stopwatch()..start();
+    debugPrint('ADD TASK');
+    final response = await client.post(
+      '$url/add-task',
+      data: task.toJson(),
+    );
+    debugPrint('${response.statusCode}: ${sw.elapsed}');
+    debugPrint(response.data.toString());
+    return TaskModel.fromJson(response.data);
+  }
+
+  @override
+  Future<List<TaskModel>> getAllTasks() {
+    return Future.value([]);
   }
 }
