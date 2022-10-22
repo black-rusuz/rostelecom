@@ -7,6 +7,6 @@ class HiddenFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const TasksBoard();
+    return const TasksBoard([]);
   }
 }

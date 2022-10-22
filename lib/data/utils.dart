@@ -11,8 +11,14 @@ class Utils {
     return output;
   }
 
-  static String formatDate(DateTime date) {
+  static String dateToJson(DateTime date) {
     final pattern = DateFormat('yyyy-MM-dd');
+    final formatted = pattern.format(date);
+    return formatted;
+  }
+
+  static String dateToView(DateTime date) {
+    final pattern = DateFormat('dd.MM.yyyy');
     final formatted = pattern.format(date);
     return formatted;
   }

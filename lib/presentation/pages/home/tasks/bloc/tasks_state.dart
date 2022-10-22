@@ -14,20 +14,14 @@ class TasksSuccess extends TasksState {
   final int assigned;
   final int done;
   final int percent;
-  final List<TaskModel> dayTasks;
-  final List<TaskModel> weekTasks;
-  final List<TaskModel> monthTasks;
-  final List<TaskModel> quarterTasks;
+  final List<TaskModel> tasks;
 
   const TasksSuccess({
     required this.total,
     required this.assigned,
     required this.done,
     required this.percent,
-    required this.dayTasks,
-    required this.weekTasks,
-    required this.monthTasks,
-    required this.quarterTasks,
+    required this.tasks,
   });
 
   @override
@@ -36,9 +30,6 @@ class TasksSuccess extends TasksState {
         assigned,
         done,
         percent,
-        ...dayTasks,
-        ...weekTasks,
-        ...monthTasks,
-        ...quarterTasks,
+        ...tasks,
       ];
 }
