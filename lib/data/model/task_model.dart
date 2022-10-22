@@ -13,7 +13,7 @@ class TaskModel extends Equatable {
   final DateTime endTime;
   final TaskStatus status;
   final bool isHidden;
-  final int masterId;
+  final int? masterId;
   final int? slaveId;
 
   const TaskModel({
