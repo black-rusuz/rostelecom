@@ -1,12 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'hidden/hidden_fragment.dart';
 import 'hot/hot_fragment.dart';
 import 'notes/notes_fragment.dart';
 import 'settings/settings_fragment.dart';
-import 'tasks/bloc/tasks_bloc.dart';
 import 'tasks/tasks_fragment.dart';
 
 export 'tasks/bloc/tasks_bloc.dart';
@@ -65,11 +63,6 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: pages[selectedIndex],
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: context.read<TasksBloc>().test,
-        icon: const Icon(Icons.local_drink_rounded),
-        label: const Text('Поиск'),
-      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: setIndex,
