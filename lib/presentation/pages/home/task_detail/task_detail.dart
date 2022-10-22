@@ -45,8 +45,11 @@ class MainInfo extends StatelessWidget {
           child: Row(
             children: const [
               TimeItem(label: 'День', icon: Icons.calendar_today_rounded),
-              TimeItem(label: '18:00', icon: Icons.access_time_rounded),
-              TimeItem(label: '22 октября 2022', icon: Icons.calendar_month_rounded),
+              Expanded(child: SizedBox()),
+              TimeItem(
+                label: '22 октября 2022',
+                icon: Icons.calendar_month_rounded,
+              ),
             ],
           ),
         )
@@ -68,9 +71,9 @@ class TimeItem extends StatelessWidget {
         Icon(icon, color: Styles.greyColor, size: 16),
         const SizedBox(width: 6),
         Text(
-            label,
-            style: const TextStyle(fontSize: 12, color: Styles.secondaryColor),
-          ),
+          label,
+          style: const TextStyle(fontSize: 12, color: Styles.secondaryColor),
+        ),
       ],
     );
   }
