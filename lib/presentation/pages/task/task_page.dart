@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../../../styles.dart';
-import '../../../widgets/base_card.dart';
+import '../../../data/model/task_model.dart';
+import '../../../styles.dart';
+import '../../widgets/base_card.dart';
 
-class TaskDetail extends StatelessWidget {
-  const TaskDetail({super.key});
+class TaskPage extends StatelessWidget {
+  static const String name = '/task';
+  final TaskModel task;
+
+  const TaskPage(this.task, {super.key});
 
   @override
   Widget build(BuildContext context) {

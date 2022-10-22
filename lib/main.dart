@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'data/model/task_model.dart';
 import 'injection.dart';
 import 'presentation/pages/home/home_page.dart';
 import 'presentation/pages/login/login_page.dart';
+import 'presentation/pages/task/task_page.dart';
 import 'styles.dart';
 
 void main() {
@@ -43,6 +45,9 @@ class MyApp extends StatelessWidget {
           ],
           child: const HomePage(),
         ));
+      case TaskPage.name:
+        final task = settings.arguments as TaskModel;
+        return router(TaskPage(task));
     }
     return null;
   }

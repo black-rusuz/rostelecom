@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../data/model/task_model.dart';
 import '../../data/utils.dart';
 import '../../styles.dart';
+import '../pages/task/task_page.dart';
 import 'base_card.dart';
 
 class TasksBoard extends StatelessWidget {
@@ -96,6 +97,10 @@ class TaskCard extends StatelessWidget {
       color: Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
       margin: const EdgeInsets.only(bottom: 15),
+      onTap: () => Navigator.of(context).pushNamed(
+        TaskPage.name,
+        arguments: task,
+      ),
       child: IntrinsicHeight(
         child: Row(
           children: [
