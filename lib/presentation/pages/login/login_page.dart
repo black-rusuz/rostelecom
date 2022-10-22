@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../styles.dart';
+import '../../widgets/base_button.dart';
 import '../../widgets/base_text_field.dart';
 import '../home/home_page.dart';
 import 'bloc/login_bloc.dart';
@@ -58,12 +59,18 @@ class LoginPage extends StatelessWidget {
                   icon: const Icon(Icons.password_rounded),
                 ),
                 const SizedBox(height: 15),
-                ElevatedButton(
-                  onPressed: () => context.read<LoginBloc>().add(LoginAuth(
+                GestureDetector(
+                  onTap: () => context.read<LoginBloc>().add(LoginAuth(
                         login: login.text,
                         password: password.text,
                       )),
-                  child: const Text('Войти'),
+                  child: const BaseButton(
+                    label: 'Войти',
+                    icon: Icons.login_rounded,
+                    bgColor: Styles.darkColor,
+                    textColor: Colors.white,
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                  ),
                 ),
               ],
             ),
