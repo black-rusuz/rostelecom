@@ -6,56 +6,65 @@ import 'base_card.dart';
 class TasksBoard extends StatelessWidget {
   const TasksBoard({super.key});
 
+  final TextStyle textStyle =
+      const TextStyle(fontWeight: FontWeight.w600, fontSize: 18);
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
-      child: Column(
-        children: [
-          const TabBar(
-            tabs: [
-              Text('День'),
-              Text('Неделя'),
-              Text('Месяц'),
-              Text('Квартал'),
-            ],
-          ),
-          SizedBox(
-            height: 350,
-            child: TabBarView(
-              children: [
-                Column(
-                  children: const [
-                    TaskCard(),
-                    TaskCard(),
-                    TaskCard(),
-                  ],
-                ),
-                Column(
-                  children: const [
-                    TaskCard(),
-                    TaskCard(),
-                    TaskCard(),
-                  ],
-                ),
-                Column(
-                  children: const [
-                    TaskCard(),
-                    TaskCard(),
-                    TaskCard(),
-                  ],
-                ),
-                Column(
-                  children: const [
-                    TaskCard(),
-                    TaskCard(),
-                    TaskCard(),
-                  ],
-                ),
+      child: Padding(
+        padding: const EdgeInsets.all(30),
+        child: Column(
+          children: [
+            TabBar(
+              labelPadding: EdgeInsets.zero,
+              indicatorColor: Colors.transparent,
+              tabs: [
+                Text('День', style: textStyle),
+                Text('Неделя', style: textStyle),
+                Text('Месяц', style: textStyle),
+                Text('Квартал', style: textStyle),
               ],
             ),
-          ),
-        ],
+            const SizedBox(height: 30),
+            SizedBox(
+              height: 350,
+              child: TabBarView(
+                children: [
+                  Column(
+                    children: const [
+                      TaskCard(),
+                      TaskCard(),
+                      TaskCard(),
+                    ],
+                  ),
+                  Column(
+                    children: const [
+                      TaskCard(),
+                      TaskCard(),
+                      TaskCard(),
+                    ],
+                  ),
+                  Column(
+                    children: const [
+                      TaskCard(),
+                      TaskCard(),
+                      TaskCard(),
+                    ],
+                  ),
+                  Column(
+                    children: const [
+                      TaskCard(),
+                      TaskCard(),
+                      TaskCard(),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
