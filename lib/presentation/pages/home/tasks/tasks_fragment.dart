@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../styles.dart';
 import '../../../widgets/base_card.dart';
-import '../../../widgets/tasks_board.dart';
 
 class TasksFragment extends StatelessWidget {
   const TasksFragment({super.key});
@@ -55,22 +54,28 @@ class StatsCard extends StatelessWidget {
             children: const [
               StatCard(
                 color: Styles.darkColor,
-                icon: Icons.account_balance,
+                icon: Icons.folder_copy_outlined,
+                iconBgColor: Color(0xFF5C627A),
                 title: 'Задач',
+                textColor: Colors.white,
                 value: 2,
               ),
               SizedBox(width: 10),
               StatCard(
                 color: Styles.accentColor,
-                icon: Icons.account_balance,
+                icon: Icons.inventory_rounded,
+                iconBgColor: Color(0xFF5999F6),
                 title: 'Назначено',
+                textColor: Colors.white,
                 value: 4,
               ),
               SizedBox(width: 10),
               StatCard(
                 color: Colors.white,
-                icon: Icons.account_balance,
+                icon: Icons.check_circle_rounded,
+                iconBgColor: Color(0xFFECEEF3),
                 title: 'Завершено',
+                textColor: Styles.secondaryColor,
                 value: 5,
               ),
             ],
@@ -79,8 +84,16 @@ class StatsCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
-              Text('Подходит к концу: '),
-              Text('42%'),
+              Text('Подходит к концу: ',
+                  style: TextStyle(color: Styles.greyColor)),
+              Text(
+                '42%',
+                style: TextStyle(
+                  color: Styles.accentColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                ),
+              )
             ],
           ),
         ],
@@ -91,6 +104,8 @@ class StatsCard extends StatelessWidget {
 
 class StatCard extends StatelessWidget {
   final Color color;
+  final Color iconBgColor;
+  final Color textColor;
   final IconData icon;
   final String title;
   final int value;
@@ -101,6 +116,8 @@ class StatCard extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.value,
+    required this.iconBgColor,
+    required this.textColor,
   });
 
   @override
@@ -115,16 +132,17 @@ class StatCard extends StatelessWidget {
             Container(
               width: 35,
               height: 35,
-              decoration: const BoxDecoration(
-                color: Colors.white,
+              decoration: BoxDecoration(
+                color: iconBgColor,
                 shape: BoxShape.circle,
               ),
-              child: Icon(icon, size: 20),
+              child: Icon(icon, size: 20, color: textColor),
             ),
             const SizedBox(height: 15),
-            Text(title),
+            Text(title, style: TextStyle(color: textColor)),
             const SizedBox(height: 15),
-            Text(value.toString()),
+            Text(value.toString(),
+                style: TextStyle(color: textColor, fontSize: 20)),
           ],
         ),
       ),
