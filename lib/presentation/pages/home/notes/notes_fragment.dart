@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../styles.dart';
 import '../../../widgets/base_card.dart';
 
 class NotesFragment extends StatelessWidget {
@@ -12,6 +13,7 @@ class NotesFragment extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
       children: [
         BaseCard(
+          color: Colors.white,
           child: Column(
             children: [
               if (true)
@@ -27,7 +29,13 @@ class NotesFragment extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Название'),
+                    const Text(
+                      'Название',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                     const SizedBox(height: 8),
                     const Text(
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'),
@@ -35,9 +43,11 @@ class NotesFragment extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: const [
-                        Icon(Icons.image_outlined),
-                        Icon(Icons.palette_outlined),
-                        Icon(Icons.delete_outlined),
+                        Icon(Icons.image_outlined, color: Styles.greyColor),
+                        SizedBox(width: 20),
+                        Icon(Icons.palette_outlined, color: Styles.greyColor),
+                        SizedBox(width: 20),
+                        Icon(Icons.delete_outlined, color: Styles.greyColor),
                       ],
                     ),
                   ],
