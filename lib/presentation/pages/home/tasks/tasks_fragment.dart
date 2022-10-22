@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../styles.dart';
 import '../../../widgets/base_card.dart';
 import '../../../widgets/tasks_board.dart';
 
@@ -53,14 +54,14 @@ class StatsCard extends StatelessWidget {
           Row(
             children: const [
               StatCard(
-                color: Colors.grey,
+                color: Styles.darkColor,
                 icon: Icons.account_balance,
                 title: 'Задач',
                 value: 2,
               ),
               SizedBox(width: 10),
               StatCard(
-                color: Colors.blue,
+                color: Styles.accentColor,
                 icon: Icons.account_balance,
                 title: 'Назначено',
                 value: 4,
