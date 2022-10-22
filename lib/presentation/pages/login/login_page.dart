@@ -1,17 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../widgets/base_text_field.dart';
+import '../home/home_page.dart';
+import 'bloc/login_bloc.dart';
 
 export 'bloc/login_bloc.dart';
 
 class LoginPage extends StatelessWidget {
   static const name = '/login';
 
-  const LoginPage({super.key});
+  LoginPage({super.key});
+
+  final login = TextEditingController();
+  final password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('LOGIN'),
+    return BlocListener<LoginBloc, LoginState>(
+      listener: (context, state) {
+        if (state is LoginSuccess) {
+          Navigator.of(context).pushReplacementNamed(HomePage.name);
+        }
+        if (state is LoginError) {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Ошибка авторизации'),
+          ));
+        }
+      },
+      child: Scaffold(
+        //backgroundColor: Colors.blue,
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(35),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text('Авторизация'),
+                const SizedBox(height: 30),
+                BaseTextField('Логин', controller: login),
+                const SizedBox(height: 15),
+                BaseTextField('Пароль', controller: password),
+                const SizedBox(height: 15),
+                ElevatedButton(
+                  onPressed: () => context.read<LoginBloc>().add(LoginAuth(
+                        login: login.text,
+                        password: password.text,
+                      )),
+                  child: const Text('Войти'),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
