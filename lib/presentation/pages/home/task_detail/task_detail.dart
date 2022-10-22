@@ -52,8 +52,40 @@ class MainInfo extends StatelessWidget {
               ),
             ],
           ),
-        )
+        ),
+        const SizedBox(height: 12),
+        const PeopleCard(),
       ],
+    );
+  }
+}
+
+class PeopleCard extends StatelessWidget {
+  const PeopleCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BaseCard(
+      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+      color: Colors.white,
+      child: IntrinsicHeight(
+        child: Row(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  children: const [Text('Куратор'), Text('Тест тест')],
+                ),
+                Container(width: 2, height: 40, color: Styles.greyColor),
+                Column(
+                  children: const [Text('Куратор'), Text('Тест тест')],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
