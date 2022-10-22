@@ -9,8 +9,7 @@ class NotesFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+    return Column(
       children: [
         BaseCard(
           color: Colors.white,

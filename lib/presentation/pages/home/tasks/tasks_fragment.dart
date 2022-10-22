@@ -10,20 +10,17 @@ class TasksFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-      child: ListView(
-        children: const [
-          BaseTextField(
-            'Найти задачу...',
-            icon: Icon(Icons.search_rounded),
-          ),
-          SizedBox(height: 20),
-          StatsCard(),
-          SizedBox(height: 40),
-          TasksBoard(),
-        ],
-      ),
+    return Column(
+      children: const [
+        BaseTextField(
+          'Найти задачу...',
+          icon: Icon(Icons.search_rounded),
+        ),
+        SizedBox(height: 20),
+        StatsCard(),
+        SizedBox(height: 40),
+        TasksBoard(),
+      ],
     );
   }
 }

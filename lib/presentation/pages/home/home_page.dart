@@ -46,24 +46,29 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          titles[selectedIndex],
-          style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(4),
-            child: ClipOval(
-              child: CachedNetworkImage(
-                imageUrl: 'https://github.com/gsusha.png',
+      body: CustomScrollView(slivers: [
+        SliverAppBar(
+          centerTitle: true,
+          title: Text(
+            titles[selectedIndex],
+            style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(4),
+              child: ClipOval(
+                child: CachedNetworkImage(
+                  imageUrl: 'https://github.com/gsusha.png',
+                ),
               ),
             ),
-          ),
-        ],
-      ),
-      body: pages[selectedIndex],
+          ],
+        ),
+        SliverToBoxAdapter(child: Padding(
+          padding: const EdgeInsets.fromLTRB(30, 20, 30, 40),
+          child: pages[selectedIndex],
+        ))
+      ]),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: setIndex,
@@ -75,15 +80,15 @@ class _HomePageState extends State<HomePage> {
           navItem(Icons.settings_rounded),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        label: const Text('Новая задача'),
+      floatingActionButton: selectedIndex == 0 || selectedIndex == 1 ? FloatingActionButton.extended(
+        onPressed: selectedIndex == 0 ? () {} : () {},
+        label: Text(selectedIndex == 0 ? 'Новая задача' : 'Новая заметка'),
         icon: const Icon(Icons.add),
         backgroundColor: Colors.white,
         foregroundColor: Styles.greyColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         extendedTextStyle: const TextStyle(letterSpacing: 0),
-      ),
+      ) : null,
     );
   }
 }
