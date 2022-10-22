@@ -92,7 +92,10 @@ class TaskCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Создать приложение для хакатона'),
+                const Text(
+                  'Создать приложение для хакатона',
+                  style: TextStyle(fontWeight: FontWeight.w600),
+                ),
                 const SizedBox(height: 30),
                 Row(
                   children: [
