@@ -12,9 +12,5 @@ void configureDependencies() async => $initGetIt(sl);
 @module
 abstract class RegisterModule {
   @Singleton()
-  Dio get client => Dio(
-        BaseOptions(
-          connectTimeout: 10 * 1000,
-        ),
-      );
+  Dio get client => Dio();
 }

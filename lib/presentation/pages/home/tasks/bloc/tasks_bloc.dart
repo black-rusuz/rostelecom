@@ -17,5 +17,8 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     });
   }
 
-  void test() => _repository.testConnection();
+  void test() {
+    _repository.testConnection();
+    _repository.addTask();
+  }
 }
