@@ -70,8 +70,29 @@ class TaskCard extends StatelessWidget {
 
   const TaskCard(this.task, {super.key});
 
+  Widget statusTag() {
+    switch (task.status) {
+      case TaskStatus.notAssigned:
+        return Tag(Icons.access_time, title: task.status.value);
+      case TaskStatus.inWork:
+        return Tag(Icons.loop_rounded,
+            title: task.status.value, color: Styles.accentColor);
+      case TaskStatus.onReview:
+        return Tag(Icons.edit,
+            title: task.status.value, color: Styles.secondaryColor);
+      case TaskStatus.ready:
+        return Tag(Icons.check_rounded,
+            title: task.status.value, color: Styles.greenColor);
+      case TaskStatus.undefined:
+        return Tag(Icons.question_mark_rounded, title: task.status.value);
+      default:
+        return const SizedBox();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    print(task);
     return BaseCard(
       color: Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
@@ -105,8 +126,7 @@ class TaskCard extends StatelessWidget {
                             color: Styles.redColor),
                       if (task.isHidden)
                         const Tag(Icons.visibility_off_rounded),
-                      if (task.status == TaskStatus.notAssigned)
-                        Tag(Icons.access_time, title: task.status.value),
+                      statusTag(),
                       Tag(
                         Icons.edit_calendar,
                         title: Utils.dateToView(task.endTime),
@@ -156,7 +176,7 @@ class Tag extends StatelessWidget {
               child: Text(
                 title!,
                 style: const TextStyle(
-                  fontSize: 12,
+                  fontSize: 10,
                   height: 1,
                   color: Styles.greyColor,
                 ),

@@ -119,12 +119,16 @@ enum TaskStatus {
   factory TaskStatus.fromString(String data) {
     switch (data) {
       case 'Не назначено':
+      case 'не назначено':
         return TaskStatus.notAssigned;
       case 'В работе':
+      case 'в работе':
         return TaskStatus.inWork;
       case 'На проверке':
+      case 'на проверке':
         return TaskStatus.onReview;
       case 'Готово':
+      case 'готово':
         return TaskStatus.ready;
     }
     return TaskStatus.undefined;
