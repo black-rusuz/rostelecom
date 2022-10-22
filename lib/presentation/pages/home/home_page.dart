@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../styles.dart';
 import 'hidden/hidden_fragment.dart';
 import 'hot/hot_fragment.dart';
 import 'notes/notes_fragment.dart';
@@ -73,6 +74,15 @@ class _HomePageState extends State<HomePage> {
           navItem(Icons.visibility_off_rounded),
           navItem(Icons.settings_rounded),
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {},
+        label: const Text('Новая задача'),
+        icon: const Icon(Icons.add),
+        backgroundColor: Colors.white,
+        foregroundColor: Styles.greyColor,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        extendedTextStyle: const TextStyle(letterSpacing: 0),
       ),
     );
   }

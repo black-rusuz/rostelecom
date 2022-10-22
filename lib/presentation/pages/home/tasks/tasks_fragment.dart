@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../../styles.dart';
-import '../../../widgets/base_button.dart';
 import '../../../widgets/base_card.dart';
 import '../../../widgets/base_text_field.dart';
+import '../../../widgets/tasks_board.dart';
 
 class TasksFragment extends StatelessWidget {
   const TasksFragment({super.key});
@@ -12,22 +12,16 @@ class TasksFragment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-      child: Column(
-        children: [
-          const BaseTextField(
+      child: ListView(
+        children: const [
+          BaseTextField(
             'Найти задачу...',
             icon: Icon(Icons.search_rounded),
           ),
-          const SizedBox(height: 20),
-          const StatsCard(),
-          const SizedBox(height: 40),
-          //const TasksBoard(),
-          GestureDetector(
-              onTap: () {},
-              child: const BaseButton(
-                label: 'Новая задача',
-                icon: Icons.add,
-              ))
+          SizedBox(height: 20),
+          StatsCard(),
+          SizedBox(height: 40),
+          TasksBoard(),
         ],
       ),
     );
