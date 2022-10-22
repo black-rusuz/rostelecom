@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../styles.dart';
+
 class BaseCard extends StatelessWidget {
   final EdgeInsets padding;
   final double borderRadius;
@@ -21,6 +23,7 @@ class BaseCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(borderRadius),
+        boxShadow: Styles.shadows,
       ),
       child: child,
     );

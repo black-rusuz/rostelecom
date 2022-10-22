@@ -46,7 +46,7 @@ class StatsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseCard(
       padding: const EdgeInsets.all(15),
-      //color: Colors.white,
+      color: Colors.white,
       borderRadius: 20,
       child: Column(
         children: [
