@@ -100,7 +100,11 @@ class TaskCard extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      if (task.isHot) const Tag(Icons.local_fire_department),
+                      if (task.isHot)
+                        const Tag(Icons.local_fire_department,
+                            color: Styles.redColor),
+                      if (task.isHidden)
+                        const Tag(Icons.visibility_off_rounded),
                       if (task.status == TaskStatus.notAssigned)
                         Tag(Icons.access_time, title: task.status.value),
                       Tag(
@@ -130,8 +134,9 @@ class TaskCard extends StatelessWidget {
 class Tag extends StatelessWidget {
   final IconData icon;
   final String? title;
+  final Color? color;
 
-  const Tag(this.icon, {super.key, this.title});
+  const Tag(this.icon, {super.key, this.title, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -139,19 +144,19 @@ class Tag extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
       margin: const EdgeInsets.only(right: 8),
       decoration: BoxDecoration(
-        color: Styles.tagBgColor,
+        color: color != null ? color?.withOpacity(0.1) : Styles.tagBgColor,
         borderRadius: BorderRadius.circular(50),
       ),
       child: Row(
         children: [
-          Icon(icon, size: 10, color: Styles.greyColor),
+          Icon(icon, size: 14, color: color ?? Styles.greyColor),
           if (title != null)
             Padding(
               padding: const EdgeInsets.only(left: 6),
               child: Text(
                 title!,
                 style: const TextStyle(
-                  fontSize: 10,
+                  fontSize: 12,
                   height: 1,
                   color: Styles.greyColor,
                 ),

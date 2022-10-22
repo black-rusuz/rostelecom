@@ -6,7 +6,6 @@ import '../../../styles.dart';
 import 'hidden/hidden_fragment.dart';
 import 'hot/hot_fragment.dart';
 import 'notes/notes_fragment.dart';
-import 'settings/settings_fragment.dart';
 import 'task_detail/task_detail.dart';
 import 'tasks/bloc/tasks_bloc.dart';
 import 'tasks/tasks_fragment.dart';
@@ -91,6 +90,7 @@ class _HomePageState extends State<HomePage> {
           navItem(Icons.visibility_off_rounded),
           navItem(Icons.settings_rounded),
         ],
+        backgroundColor: Colors.white,
       ),
       floatingActionButton: selectedIndex == 0 || selectedIndex == 1
           ? FloatingActionButton.extended(
