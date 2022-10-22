@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:equatable/equatable.dart';
 
+import '../../styles.dart';
 import '../utils.dart';
 
 class TaskModel extends Equatable {
@@ -35,7 +38,7 @@ class TaskModel extends Equatable {
       status: TaskStatus.fromString(json['status']),
       isHidden: json['hidden'] > 0,
       // !! TODO masterId
-      masterId: json['id'],
+      masterId: json['master_id'],
       slaveId: json['user_id'],
     );
   }
@@ -61,6 +64,14 @@ class TaskModel extends Equatable {
         masterId,
         slaveId,
       ];
+
+  bool get isHot => endTime.difference(DateTime.now()).inDays == 0;
+
+  Color get color => isHot
+      ? Styles.redColor
+      : isHidden
+          ? Styles.greyColor
+          : Styles.accentColor;
 }
 
 enum TaskDuration {
@@ -87,6 +98,11 @@ enum TaskDuration {
     }
     return TaskDuration.undefined;
   }
+
+  static List<String> get list => TaskDuration.values
+      .sublist(0, TaskDuration.values.length - 1)
+      .map((e) => e.value)
+      .toList();
 }
 
 enum TaskStatus {
@@ -113,4 +129,9 @@ enum TaskStatus {
     }
     return TaskStatus.undefined;
   }
+
+  static List<String> get list => TaskStatus.values
+      .sublist(0, TaskStatus.values.length - 1)
+      .map((e) => e.value)
+      .toList();
 }

@@ -4,6 +4,7 @@ import '../../styles.dart';
 
 class BaseCard extends StatelessWidget {
   final EdgeInsets padding;
+  final EdgeInsets margin;
   final double borderRadius;
   final Color color;
   final Widget child;
@@ -12,6 +13,7 @@ class BaseCard extends StatelessWidget {
   const BaseCard({
     super.key,
     this.padding = EdgeInsets.zero,
+    this.margin = EdgeInsets.zero,
     this.color = Colors.black12,
     this.borderRadius = 10,
     this.border,
@@ -22,6 +24,7 @@ class BaseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: padding,
+      margin: margin,
       decoration: BoxDecoration(
         color: color,
         border: border,

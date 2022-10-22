@@ -29,7 +29,7 @@ class TasksFragment extends StatelessWidget {
                 done: state.done,
               ),
               const SizedBox(height: 40),
-              const TasksBoard(),
+              TasksBoard(state.tasks),
             ],
           );
         }
@@ -45,12 +45,13 @@ class StatsCard extends StatelessWidget {
   final int done;
   final int percent;
 
-  const StatsCard(
-      {super.key,
-      required this.percent,
-      required this.total,
-      required this.assigned,
-      required this.done});
+  const StatsCard({
+    super.key,
+    required this.percent,
+    required this.total,
+    required this.assigned,
+    required this.done,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -95,8 +96,10 @@ class StatsCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Подходит к концу: ',
-                  style: TextStyle(color: Styles.greyColor)),
+              const Text(
+                'Подходит к концу: ',
+                style: TextStyle(color: Styles.greyColor),
+              ),
               Text(
                 '$percent%',
                 style: const TextStyle(
@@ -104,7 +107,7 @@ class StatsCard extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
                 ),
-              )
+              ),
             ],
           ),
         ],
