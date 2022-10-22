@@ -13,7 +13,7 @@ class Styles {
           color: Colors.transparent,
           shadowColor: Colors.transparent,
           titleTextStyle: TextStyle(color: Colors.black),
-          // iconTheme: IconThemeData(color: Colors.black),
+          iconTheme: IconThemeData(color: secondaryColor),
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           type: BottomNavigationBarType.fixed,

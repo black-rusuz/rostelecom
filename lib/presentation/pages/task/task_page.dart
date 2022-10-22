@@ -12,11 +12,23 @@ class TaskPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        MainInfo(),
-      ],
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          const SliverAppBar(),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(30, 20, 30, 40),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  MainInfo(),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
