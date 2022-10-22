@@ -78,5 +78,9 @@ class MyApp extends StatelessWidget {
               //),
               ),
         ),
+        tabBarTheme: const TabBarTheme(
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.grey,
+        ),
       );
 }

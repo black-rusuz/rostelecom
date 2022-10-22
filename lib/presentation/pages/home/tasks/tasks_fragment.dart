@@ -64,21 +64,7 @@ class TasksFragment extends StatelessWidget {
               ],
             ),
           ),
-          Row(
-            children: const [
-              Text('Сегодня'),
-              Text('На этой неделе'),
-              Text('В этом месяце'),
-              Text('Квартал'),
-            ],
-          ),
-          Column(
-            children: const [
-              TaskCard(),
-              TaskCard(),
-              TaskCard(),
-            ],
-          ),
+          const TasksBoard(),
           GestureDetector(
             onTap: () {},
             child: Container(
@@ -91,6 +77,64 @@ class TasksFragment extends StatelessWidget {
               ),
             ),
           )
+        ],
+      ),
+    );
+  }
+}
+
+class TasksBoard extends StatelessWidget {
+  const TasksBoard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 4,
+      child: Column(
+        children: [
+          const TabBar(
+            tabs: [
+              Text('День'),
+              Text('Неделя'),
+              Text('Месяц'),
+              Text('Квартал'),
+            ],
+          ),
+          SizedBox(
+            height: 350,
+            child: TabBarView(
+              children: [
+                Column(
+                  children: const [
+                    TaskCard(),
+                    TaskCard(),
+                    TaskCard(),
+                  ],
+                ),
+                Column(
+                  children: const [
+                    TaskCard(),
+                    TaskCard(),
+                    TaskCard(),
+                  ],
+                ),
+                Column(
+                  children: const [
+                    TaskCard(),
+                    TaskCard(),
+                    TaskCard(),
+                  ],
+                ),
+                Column(
+                  children: const [
+                    TaskCard(),
+                    TaskCard(),
+                    TaskCard(),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
