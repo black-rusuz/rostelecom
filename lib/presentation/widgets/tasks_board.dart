@@ -108,6 +108,8 @@ class TaskCard extends StatelessWidget {
                         Tag(),
                       ],
                     ),
+                    //TODO: Space-between
+                    const SizedBox(width: 10),
                     ClipOval(
                       child: CachedNetworkImage(
                         width: 30,
