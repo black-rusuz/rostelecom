@@ -12,13 +12,6 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
   final Repository _repository;
 
   TasksBloc(this._repository) : super(TasksInitial()) {
-    on<TasksEvent>((event, emit) {
-      // TODO: implement event handler
-    });
-  }
-
-  void test() {
-    _repository.testConnection();
-    _repository.addTask();
+    on<TasksEvent>((event, emit) {});
   }
 }

@@ -6,7 +6,9 @@ class Styles {
         primarySwatch: Colors.blue,
         //scaffoldBackgroundColor: Styles.bg,
         //iconTheme: const IconThemeData(color: Styles.icon),
-        textTheme: GoogleFonts.robotoTextTheme().apply(displayColor: primaryColor),
+        textTheme: GoogleFonts.robotoTextTheme().apply(
+          displayColor: primaryColor,
+        ),
         appBarTheme: const AppBarTheme(
           color: Colors.transparent,
           shadowColor: Colors.transparent,
