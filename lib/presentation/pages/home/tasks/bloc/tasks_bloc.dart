@@ -73,6 +73,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       isHidden: event.isHidden,
       master: await _repository.currentUser.first,
       slave: await _repository.currentUser.first,
+      subtasks: const [],
     );
 
     try {

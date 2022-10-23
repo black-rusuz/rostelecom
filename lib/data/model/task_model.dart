@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../styles.dart';
 import '../utils.dart';
+import 'subtask_model.dart';
 import 'user_model.dart';
 
 class TaskModel extends Equatable {
@@ -15,6 +16,7 @@ class TaskModel extends Equatable {
   final bool isHidden;
   final UserModel? master;
   final UserModel slave;
+  final List<SubtaskModel> subtasks;
 
   const TaskModel({
     required this.id,
@@ -26,6 +28,7 @@ class TaskModel extends Equatable {
     required this.isHidden,
     required this.master,
     required this.slave,
+    required this.subtasks,
   });
 
   factory TaskModel.fromJson(Map<String, dynamic> json) {
@@ -40,6 +43,9 @@ class TaskModel extends Equatable {
       master:
           json['master'] != null ? UserModel.fromJson(json['master']) : null,
       slave: UserModel.fromJson(json['user_id']),
+      subtasks: (json['subtasks'] as List)
+          .map((e) => SubtaskModel.fromJson(e))
+          .toList(),
     );
   }
 

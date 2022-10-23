@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 
 import '../domain/repository.dart';
 import 'model/note_model.dart';
+import 'model/subtask_model.dart';
 import 'model/task_model.dart';
 import 'model/user_model.dart';
 import 'utils.dart';
@@ -82,6 +83,23 @@ class RepositoryImpl extends Repository {
         (response.data as List).map((e) => TaskModel.fromJson(e)).toList();
     tasks.add(newTasks);
     return newTasks;
+  }
+
+  @override
+  Future<SubtaskModel> addSubTask(SubtaskModel subtask) async {
+    final sw = Stopwatch()..start();
+    debugPrint('ADD SUBTASK');
+
+    client.options.headers = headers;
+    final response = await client.post(
+      '$url/create-subtask',
+      data: subtask.toJson(),
+    );
+    debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
+    //Utils.printJson(response.data, true);
+
+    final newSubtask = SubtaskModel.fromJson(response.data);
+    return newSubtask;
   }
 
   @override

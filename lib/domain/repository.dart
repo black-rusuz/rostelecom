@@ -1,6 +1,7 @@
 import 'package:rxdart/rxdart.dart';
 
 import '../data/model/note_model.dart';
+import '../data/model/subtask_model.dart';
 import '../data/model/task_model.dart';
 import '../data/model/user_model.dart';
 
@@ -18,6 +19,8 @@ abstract class Repository {
   Future<TaskModel> addTask(TaskModel task);
 
   Future<List<TaskModel>> getAllTasks();
+
+  Future<SubtaskModel> addSubTask(SubtaskModel subtask);
 
   // * NOTES
   Future<NoteModel> addNote(NoteModel note);
