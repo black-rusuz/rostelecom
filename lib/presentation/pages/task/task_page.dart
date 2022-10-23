@@ -103,14 +103,37 @@ class PeopleCard extends StatelessWidget {
       color: Colors.white,
       child: IntrinsicHeight(
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              children: const [Text('Куратор'), Text('Тест тест')],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text(
+                    'Куратор',
+                    style: TextStyle(color: Styles.greyColor),
+                  ),
+                  Expanded(child: SizedBox()),
+                  //TODO: masterId
+                  Text('Тест тест'),
+                ],
+              ),
             ),
             Container(width: 2, height: 40, color: Styles.greyColor),
-            Column(
-              children: const [Text('Куратор'), Text('Тест тест')],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: const [
+                  Text(
+                    'Исполнитель',
+                    style: TextStyle(color: Styles.greyColor),
+                  ),
+                  Expanded(child: SizedBox()),
+                  //TODO: slaveId
+                  Text('Тест тест'),
+                ],
+              ),
             ),
           ],
         ),
