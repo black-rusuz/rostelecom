@@ -38,10 +38,14 @@ class RepositoryImpl extends Repository {
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
     Utils.printJson(response.data, true);
 
-    final user = UserModel.fromJson(response.data);
-    currentUser.add(user);
     token = response.data['token'];
-    debugPrint(token);
+    client.options.headers = headers;
+    final userResponse = await client.get('$url/user');
+    debugPrint('CODE ${userResponse.statusCode}\t\tTIME: ${sw.elapsed}');
+    Utils.printJson(userResponse.data, true);
+
+    final user = UserModel.fromJson(userResponse.data);
+    currentUser.add(user);
     return user;
   }
 
@@ -99,8 +103,18 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<List<NoteModel>> getAllNotes() {
-    // TODO: implement getAllNotes
-    throw UnimplementedError();
+  Future<List<NoteModel>> getAllNotes() async {
+    final sw = Stopwatch()..start();
+    debugPrint('ALL TASKS');
+
+    client.options.headers = headers;
+    final response = await client.get('$url/all-note');
+    debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
+    //Utils.printJson(response.data, true);
+
+    final newNotes =
+        (response.data as List).map((e) => NoteModel.fromJson(e)).toList();
+    notes.add(newNotes);
+    return newNotes;
   }
 }
