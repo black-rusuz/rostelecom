@@ -65,14 +65,14 @@ class _TaskFormState extends State<TaskForm> {
           child: ListView(
             children: [
               BaseTextField('Название', controller: title),
-              const SizedBox(height: 12),
+              const SizedBox(height: 15),
               BaseTextField('Описание', lines: 5, controller: description),
-              const SizedBox(height: 12),
+              const SizedBox(height: 15),
               BaseSelector(
                 values: TaskDuration.stringList,
                 onSelect: (v) => setState(() => selectedDuration = v),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 15),
               BaseTextField('Исполнитель', controller: slave),
               const SizedBox(height: 40),
               const Text(
@@ -85,7 +85,7 @@ class _TaskFormState extends State<TaskForm> {
               ),
               const SizedBox(height: 20),
               BaseTextField('Название подзадачи', controller: subTask),
-              const SizedBox(height: 12),
+              const SizedBox(height: 15),
               const BaseButton(label: 'Добавить подзадачу', icon: Icons.add),
               const SizedBox(height: 40),
               BaseTextSwitch(

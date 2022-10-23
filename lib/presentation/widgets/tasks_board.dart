@@ -30,7 +30,7 @@ class TasksBoard extends StatelessWidget {
           ),
           const SizedBox(height: 30),
           SizedBox(
-            height: 350,
+            height: 500,
             child: TabBarView(
               children: [
                 Column(

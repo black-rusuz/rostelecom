@@ -46,6 +46,7 @@ class NoteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseCard(
+      margin: const EdgeInsets.only(bottom: 20),
       child: Column(
         children: [
           if (note.imageUrl != null)

@@ -40,36 +40,36 @@ class Styles {
   static BorderRadius radius = BorderRadius.circular(20);
 
   static const List<BoxShadow> shadows = [
-    // BoxShadow(
-    //   color: Color.fromRGBO(0, 0, 0, 0.1),
-    //   blurRadius: 2.21,
-    //   offset: Offset(0, 0.5),
-    // ),
-    // BoxShadow(
-    //   color: Color.fromRGBO(0, 0, 0, 0.1),
-    //   blurRadius: 5.32,
-    //   offset: Offset(0, 1.2),
-    // ),
-    // BoxShadow(
-    //   color: Color.fromRGBO(0, 0, 0, 0.1),
-    //   blurRadius: 10.02,
-    //   offset: Offset(0, 2.25),
-    // ),
     BoxShadow(
-      color: Color.fromRGBO(0, 0, 0, 0.1),
+      color: Color.fromRGBO(0, 0, 0, 0.025),
+      blurRadius: 2.21,
+      offset: Offset(0, 0.5),
+    ),
+    BoxShadow(
+      color: Color.fromRGBO(0, 0, 0, 0.025),
+      blurRadius: 5.32,
+      offset: Offset(0, 1.2),
+    ),
+    BoxShadow(
+      color: Color.fromRGBO(0, 0, 0, 0.025),
+      blurRadius: 10.02,
+      offset: Offset(0, 2.25),
+    ),
+    BoxShadow(
+      color: Color.fromRGBO(0, 0, 0, 0.025),
       blurRadius: 17.87,
       offset: Offset(0, 4.02),
     ),
-    // BoxShadow(
-    //   color: Color.fromRGBO(0, 0, 0, 0.1),
-    //   blurRadius: 33.42,
-    //   offset: Offset(0, 7.52),
-    // ),
-    // BoxShadow(
-    //   color: Color.fromRGBO(0, 0, 0, 0.1),
-    //   blurRadius: 80,
-    //   offset: Offset(0, 18),
-    // ),
+    BoxShadow(
+      color: Color.fromRGBO(0, 0, 0, 0.025),
+      blurRadius: 33.42,
+      offset: Offset(0, 7.52),
+    ),
+    BoxShadow(
+      color: Color.fromRGBO(0, 0, 0, 0.025),
+      blurRadius: 80,
+      offset: Offset(0, 18),
+    ),
   ];
 
   static const bgColor = Color(0xFFFBFBFC);
