@@ -138,8 +138,8 @@ class TaskCard extends StatelessWidget {
                       const Expanded(child: SizedBox()),
                       ClipOval(
                         child: CachedNetworkImage(
-                          width: 30,
-                          height: 30,
+                          width: 24,
+                          height: 24,
                           imageUrl: 'https://github.com/gsusha.png',
                         ),
                       ),
@@ -165,8 +165,9 @@ class Tag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 4, horizontal: title != null ? 8 : 4),
-      margin: const EdgeInsets.only(right: 8),
+      padding:
+          EdgeInsets.symmetric(vertical: 4, horizontal: title != null ? 8 : 4),
+      margin: const EdgeInsets.only(right: 6),
       decoration: BoxDecoration(
         color: color != null ? color?.withOpacity(0.1) : Styles.tagBgColor,
         borderRadius: BorderRadius.circular(50),
