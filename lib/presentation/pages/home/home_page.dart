@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                       child: BaseAvatar(
                         size: 50,
                         fontSize: 20,
-                        name: Utils.stringToLetters(state.user.name ?? ''),
+                        name: Utils.stringToLetters(state.user.name),
                       ),
                     );
                   }

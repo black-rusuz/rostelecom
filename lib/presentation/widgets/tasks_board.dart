@@ -118,9 +118,10 @@ class TaskCard extends StatelessWidget {
                       const Expanded(child: SizedBox()),
                       if (task.slaveId != null)
                         BaseAvatar(
-                            size: 24,
-                            fontSize: 12,
-                            name: Utils.stringToLetters('da s'))
+                          size: 24,
+                          fontSize: 12,
+                          name: Utils.stringToLetters('da s'),
+                        )
                     ],
                   ),
                 ],

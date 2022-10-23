@@ -41,7 +41,7 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
       id: 0,
       name: event.title,
       description: event.description,
-      userId: user.id ?? 1,
+      userId: user.id,
     );
 
     try {
