@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../styles.dart';
+import '../../../widgets/base_button.dart';
 import '../../../widgets/base_card.dart';
 import '../../../widgets/base_text_field.dart';
 import '../../../widgets/tasks_board.dart';
@@ -27,6 +28,14 @@ class TasksFragment extends StatelessWidget {
                 total: state.total,
                 assigned: state.assigned,
                 done: state.done,
+              ),
+              const SizedBox(height: 20),
+              BaseButton(
+                label: 'Выгрузить список в Excel',
+                icon: Icons.table_chart_outlined,
+                bgColor: Styles.greenColor.withOpacity(0.1),
+                textColor: Styles.greenColor,
+                border: Border.all(width: 2, color: Colors.white),
               ),
               const SizedBox(height: 40),
               TasksBoard(state.tasks),

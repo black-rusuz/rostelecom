@@ -8,6 +8,7 @@ class BaseButton extends StatelessWidget {
   final Color? textColor;
   final Color? bgColor;
   final EdgeInsets? padding;
+  final Border? border;
 
   const BaseButton({
     super.key,
@@ -16,6 +17,7 @@ class BaseButton extends StatelessWidget {
     this.textColor,
     this.bgColor = Colors.white,
     this.padding = const EdgeInsets.symmetric(vertical: 14),
+    this.border,
   });
 
   @override
@@ -26,6 +28,7 @@ class BaseButton extends StatelessWidget {
         color: bgColor,
         borderRadius: BorderRadius.circular(10),
         boxShadow: Styles.shadows,
+        border: border,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
