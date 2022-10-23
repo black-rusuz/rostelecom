@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 import '../../styles.dart';
 import '../utils.dart';
@@ -72,6 +73,40 @@ class TaskModel extends Equatable {
       : isHidden
           ? Styles.greyColor
           : Styles.accentColor;
+
+  IconData get icon {
+    switch (status) {
+      case TaskStatus.notAssigned:
+        return Icons.access_time;
+      case TaskStatus.inWork:
+        return Icons.loop_rounded;
+      case TaskStatus.onReview:
+        return Icons.edit;
+      case TaskStatus.ready:
+        return Icons.check_rounded;
+      case TaskStatus.undefined:
+        return Icons.question_mark_rounded;
+      default:
+        return Icons.question_mark_rounded;
+    }
+  }
+
+  Color get iconColor {
+    switch (status) {
+      case TaskStatus.notAssigned:
+        return Styles.greyColor;
+      case TaskStatus.inWork:
+        return Styles.accentColor;
+      case TaskStatus.onReview:
+        return Styles.secondaryColor;
+      case TaskStatus.ready:
+        return Styles.greenColor;
+      case TaskStatus.undefined:
+        return Styles.greyColor;
+      default:
+        return Styles.greyColor;
+    }
+  }
 }
 
 enum TaskDuration {

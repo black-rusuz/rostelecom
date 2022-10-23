@@ -28,6 +28,10 @@ class TaskPage extends StatelessWidget {
                     description: task.description,
                     duration: task.duration.value,
                     endTime: task.endTime,
+                    status: task.status.value,
+                    icon: task.icon,
+                    iconColor: task.iconColor,
+                    color: task.color,
                   ),
                 ],
               ),
@@ -44,6 +48,10 @@ class MainInfo extends StatelessWidget {
   final String? description;
   final String duration;
   final DateTime endTime;
+  final String status;
+  final IconData icon;
+  final Color iconColor;
+  final Color color;
 
   const MainInfo({
     super.key,
@@ -51,7 +59,14 @@ class MainInfo extends StatelessWidget {
     this.description,
     required this.duration,
     required this.endTime,
+    required this.status,
+    required this.icon,
+    required this.iconColor,
+    required this.color,
   });
+
+  EdgeInsets get padding =>
+      const EdgeInsets.symmetric(vertical: 14, horizontal: 20);
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +88,7 @@ class MainInfo extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         BaseCard(
-          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+          padding: padding,
           color: Colors.white,
           child: Row(
             children: [
@@ -87,19 +102,42 @@ class MainInfo extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-        const PeopleCard(),
+        PeopleCard(padding: padding),
+        const SizedBox(height: 12),
+        BaseCard(
+          padding: padding,
+          color: iconColor.withOpacity(0.1),
+          border: Border.all(width: 2, color: Colors.white),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, color: iconColor, size: 16),
+              const SizedBox(width: 6),
+              Text(
+                status,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: iconColor,
+                ),
+              )
+            ],
+          ),
+        ),
       ],
     );
   }
 }
 
 class PeopleCard extends StatelessWidget {
-  const PeopleCard({super.key});
+  final EdgeInsets padding;
+
+  const PeopleCard({super.key, required this.padding});
 
   @override
   Widget build(BuildContext context) {
     return BaseCard(
-      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+      padding: padding,
       color: Colors.white,
       child: IntrinsicHeight(
         child: Row(
