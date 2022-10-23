@@ -74,10 +74,10 @@ class NoteCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: const [
-                    Icon(Icons.image_outlined, color: Styles.greyColor),
-                    SizedBox(width: 20),
-                    //Icon(Icons.palette_outlined, color: Styles.greyColor),
-                    //SizedBox(width: 20),
+                    // Icon(Icons.image_outlined, color: Styles.greyColor),
+                    // SizedBox(width: 20),
+                    // Icon(Icons.palette_outlined, color: Styles.greyColor),
+                    // SizedBox(width: 20),
                     Icon(Icons.delete_outlined, color: Styles.greyColor),
                   ],
                 ),
