@@ -21,8 +21,11 @@ class TaskPage extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(30, 20, 30, 40),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  MainInfo(),
+                children: [
+                  MainInfo(
+                    name: task.name,
+                    description: task.description,
+                  ),
                 ],
               ),
             ),
@@ -34,25 +37,29 @@ class TaskPage extends StatelessWidget {
 }
 
 class MainInfo extends StatelessWidget {
-  const MainInfo({super.key});
+  final String name;
+  final String? description;
+
+  const MainInfo({super.key, required this.name, this.description});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Название',
-          style: TextStyle(
+        Text(
+          name,
+          style: const TextStyle(
             color: Styles.secondaryColor,
             fontWeight: FontWeight.w600,
             fontSize: 20,
           ),
         ),
-        const SizedBox(height: 12),
-        const Text(
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-          style: TextStyle(color: Styles.greyColor),
+        if (description != null)
+          const SizedBox(height: 12),
+        Text(
+          description!,
+          style: const TextStyle(color: Styles.greyColor),
         ),
         const SizedBox(height: 20),
         BaseCard(
