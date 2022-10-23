@@ -8,7 +8,8 @@ abstract class Repository {
   abstract final String url;
 
   final currentUser = BehaviorSubject<UserModel>();
-  final tasks = BehaviorSubject<List<UserModel>>();
+  final tasks = BehaviorSubject<List<TaskModel>>();
+  final notes = BehaviorSubject<List<NoteModel>>();
 
   // * PROD
   Future<UserModel> login(String login, String password);

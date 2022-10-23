@@ -27,14 +27,12 @@ class RepositoryImpl extends Repository {
   Future<UserModel> login(String login, String password) async {
     final sw = Stopwatch()..start();
     debugPrint('LOGIN');
-    final response = await client.post(
-      '$url/login',
-      data: {
-        'email': login,
-        'password': password,
-      },
-    );
+    final response = await client.post('$url/login', data: {
+      'email': login,
+      'password': password,
+    });
     final user = UserModel.fromJson(response.data);
+
     currentUser.add(user);
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
     return user;
@@ -48,9 +46,12 @@ class RepositoryImpl extends Repository {
       '$url/add-task',
       data: task.toJson(),
     );
+    final newTask = TaskModel.fromJson(response.data['task']);
+
+    getAllTasks();
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
     Utils.printJson(response.data, true);
-    return TaskModel.fromJson(response.data['task']);
+    return newTask;
   }
 
   @override
@@ -58,9 +59,13 @@ class RepositoryImpl extends Repository {
     final sw = Stopwatch()..start();
     debugPrint('ALL TASKS');
     final response = await client.get('$url/all-task');
+    final newTasks =
+        (response.data as List).map((e) => TaskModel.fromJson(e)).toList();
+
+    tasks.add(newTasks);
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
     Utils.printJson(response.data, true);
-    return (response.data as List).map((e) => TaskModel.fromJson(e)).toList();
+    return newTasks;
   }
 
   @override

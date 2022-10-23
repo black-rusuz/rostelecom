@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -82,7 +80,7 @@ class TaskModel extends Equatable {
         return Icons.loop_rounded;
       case TaskStatus.onReview:
         return Icons.edit;
-      case TaskStatus.ready:
+      case TaskStatus.done:
         return Icons.check_rounded;
       case TaskStatus.undefined:
         return Icons.question_mark_rounded;
@@ -99,7 +97,7 @@ class TaskModel extends Equatable {
         return Styles.accentColor;
       case TaskStatus.onReview:
         return Styles.secondaryColor;
-      case TaskStatus.ready:
+      case TaskStatus.done:
         return Styles.greenColor;
       case TaskStatus.undefined:
         return Styles.greyColor;
@@ -144,7 +142,7 @@ enum TaskStatus {
   notAssigned('Не назначено'),
   inWork('В работе'),
   onReview('На проверке'),
-  ready('Готово'),
+  done('Готово'),
   undefined('Статус неопознан');
 
   const TaskStatus(this.value);
@@ -164,7 +162,7 @@ enum TaskStatus {
         return TaskStatus.onReview;
       case 'Готово':
       case 'готово':
-        return TaskStatus.ready;
+        return TaskStatus.done;
     }
     return TaskStatus.undefined;
   }
