@@ -117,4 +117,19 @@ class RepositoryImpl extends Repository {
     notes.add(newNotes);
     return newNotes;
   }
+
+  @override
+  Future<String> getExcel() async {
+    final sw = Stopwatch()..start();
+    debugPrint('EXCEL');
+
+    client.options.headers = headers;
+    final response = await client.get('$url/excel');
+    debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
+    //Utils.printJson(response.data, true);
+
+    final excel = response.data;
+
+    return excel;
+  }
 }

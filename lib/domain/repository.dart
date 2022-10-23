@@ -23,4 +23,6 @@ abstract class Repository {
   Future<NoteModel> addNote(NoteModel note);
 
   Future<List<NoteModel>> getAllNotes();
+
+  Future<String> getExcel();
 }
