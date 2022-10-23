@@ -25,7 +25,8 @@ class SettingsFragment extends StatelessWidget {
                       context.read<SettingsBloc>().add(SetNotification(v))),
               const SizedBox(height: 15),
               BaseTextSwitch(
-                  label: themeMode.darkMode ? 'Сейчас тёмная тема' : 'Сейчас светлая тема',
+                  label: 'Тёмная тема',
+                  initial: themeMode.darkMode,
                   onTap: (v) =>
                       context.read<SettingsBloc>().add(SetDarkMode(v, themeMode))),
             ],
