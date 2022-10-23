@@ -76,7 +76,7 @@ class StatsCard extends StatelessWidget {
                 color: Styles.accentColor,
                 icon: Icons.inventory_rounded,
                 iconBgColor: const Color(0xFF5999F6),
-                title: 'Назначено',
+                title: 'Для меня',
                 textColor: Colors.white,
                 value: assigned,
               ),
