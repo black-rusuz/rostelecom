@@ -60,7 +60,7 @@ class TaskForm extends StatelessWidget {
             const SizedBox(height: 12),
             const BaseButton(label: 'Добавить подзадачу', icon: Icons.add),
             const SizedBox(height: 40),
-            const BaseTextSwitch(label: 'Скрытая задача'),
+            BaseTextSwitch(label: 'Скрытая задача', onTap: (v) {}),
             const SizedBox(height: 40),
             const BaseButton(
               label: 'Создать',
