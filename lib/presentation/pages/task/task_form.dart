@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../data/model/task_model.dart';
 import '../../../styles.dart';
 import '../../widgets/base_button.dart';
+import '../../widgets/base_card.dart';
 import '../../widgets/base_switch.dart';
 import '../../widgets/base_text_field.dart';
 
@@ -38,9 +39,17 @@ class TaskForm extends StatelessWidget {
             const SizedBox(height: 12),
             const BaseTextField('Описание'),
             const SizedBox(height: 12),
-            DropdownButton<TaskDuration>(
-              items: TaskDuration.list.map(durationMapper).toList(),
-              onChanged: (v) {},
+            BaseCard(
+              color: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 14),
+              child: DropdownButton<TaskDuration>(
+                items: TaskDuration.list.map(durationMapper).toList(),
+                onChanged: (v) {},
+                hint: const Text(
+                  'Продолжительность',
+                  style: TextStyle(color: Styles.greyColor, fontSize: 14),
+                ),
+              ),
             ),
             const SizedBox(height: 12),
             const BaseTextField('Исполнитель'),
