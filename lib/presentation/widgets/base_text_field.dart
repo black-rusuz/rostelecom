@@ -26,6 +26,7 @@ class BaseTextField extends StatelessWidget {
         decoration: InputDecoration(
           prefixIcon: icon,
           hintText: label,
+          hintStyle: const TextStyle(color: Styles.greyColor),
         ),
       ),
     );
