@@ -134,10 +134,10 @@ enum TaskDuration {
     return TaskDuration.undefined;
   }
 
-  static List<String> get list => TaskDuration.values
-      .sublist(0, TaskDuration.values.length - 1)
-      .map((e) => e.value)
-      .toList();
+  static List<TaskDuration> get list =>
+      TaskDuration.values.sublist(0, TaskDuration.values.length - 1).toList();
+
+  static List<String> get stringList => list.map((e) => e.value).toList();
 }
 
 enum TaskStatus {
@@ -169,8 +169,8 @@ enum TaskStatus {
     return TaskStatus.undefined;
   }
 
-  static List<String> get list => TaskStatus.values
-      .sublist(0, TaskStatus.values.length - 1)
-      .map((e) => e.value)
-      .toList();
+  static List<TaskStatus> get list =>
+      TaskStatus.values.sublist(0, TaskStatus.values.length - 1).toList();
+
+  static List<String> get stringList => list.map((e) => e.value).toList();
 }
