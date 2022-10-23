@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../styles.dart';
@@ -29,7 +30,7 @@ class _BaseTextSwitchState extends State<BaseTextSwitch> {
           children: [
             BaseCard(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -40,7 +41,7 @@ class _BaseTextSwitchState extends State<BaseTextSwitch> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    Switch(value: isActive, onChanged: onChanged)
+                    CupertinoSwitch(value: isActive, onChanged: onChanged)
                   ],
                 ),
               ),

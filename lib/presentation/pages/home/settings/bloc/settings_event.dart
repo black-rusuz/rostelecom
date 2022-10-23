@@ -6,8 +6,9 @@ abstract class SettingsEvent {
 
 class SetDarkMode extends SettingsEvent {
   final bool isActive;
+  final DarkMode darkMode;
 
-  SetDarkMode(this.isActive);
+  SetDarkMode(this.isActive, this.darkMode);
 }
 
 class SetNotification extends SettingsEvent {
