@@ -119,17 +119,16 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<String> getExcel() async {
+  Future<String> getCsv() async {
     final sw = Stopwatch()..start();
-    debugPrint('EXCEL');
+    debugPrint('CSV');
 
     client.options.headers = headers;
     final response = await client.get('$url/excel');
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
     //Utils.printJson(response.data, true);
 
-    final excel = response.data;
-
-    return excel;
+    final csv = response.data;
+    return csv;
   }
 }
