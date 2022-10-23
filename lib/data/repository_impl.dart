@@ -42,7 +42,7 @@ class RepositoryImpl extends Repository {
     client.options.headers = headers;
     final userResponse = await client.get('$url/user');
     debugPrint('CODE ${userResponse.statusCode}\t\tTIME: ${sw.elapsed}');
-    Utils.printJson(userResponse.data, true);
+    //Utils.printJson(userResponse.data, true);
 
     final user = UserModel.fromJson(userResponse.data);
     currentUser.add(user);
@@ -61,7 +61,7 @@ class RepositoryImpl extends Repository {
       //options: debug,
     );
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
-    Utils.printJson(response.data, true);
+    //Utils.printJson(response.data, true);
 
     final newTask = TaskModel.fromJson(response.data['task']);
     getAllTasks();
@@ -95,7 +95,7 @@ class RepositoryImpl extends Repository {
       data: note.toJson(),
     );
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
-    Utils.printJson(response.data, true);
+    //Utils.printJson(response.data, true);
 
     final newNote = NoteModel.fromJson(response.data['task']);
     getAllNotes();

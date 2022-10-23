@@ -67,7 +67,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       name: event.name,
       description: event.description,
       duration: duration,
-      endTime: endTime(duration),
+      endTime: _endTime(duration),
       status: event.slaveId != 1 ? TaskStatus.notAssigned : TaskStatus.inWork,
       isHidden: event.isHidden,
       masterId: 1,
@@ -82,7 +82,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     }
   }
 
-  DateTime endTime(TaskDuration duration) {
+  DateTime _endTime(TaskDuration duration) {
     final now = DateTime.now();
     switch (duration) {
       case TaskDuration.day:

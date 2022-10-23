@@ -103,17 +103,19 @@ class _HomePageState extends State<HomePage> {
                     return Padding(
                       padding: const EdgeInsets.fromLTRB(4, 4, 30, 4),
                       child: BaseAvatar(
-                          size: 50,
-                          fontSize: 20,
-                          name: Utils.stringToLetters(state.user.name ?? '')),
+                        size: 50,
+                        fontSize: 20,
+                        name: Utils.stringToLetters(state.user.name ?? ''),
+                      ),
                     );
                   }
                   return Padding(
                     padding: const EdgeInsets.fromLTRB(4, 4, 30, 4),
                     child: BaseAvatar(
-                        size: 50,
-                        fontSize: 20,
-                        name: Utils.stringToLetters('JD')),
+                      size: 50,
+                      fontSize: 20,
+                      name: Utils.stringToLetters('JD'),
+                    ),
                   );
                 },
               ),

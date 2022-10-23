@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
@@ -14,6 +16,10 @@ part 'notes_state.dart';
 class NotesBloc extends Bloc<NotesEvent, NotesState> {
   final Repository _repository;
 
+  List<NoteModel> _notes = [];
+
+  StreamSubscription? _notesSubscription;
+
   NotesBloc(this._repository) : super(NotesInitial()) {
     on<NotesInit>(_init);
     on<AddNote>(_addNote);
@@ -22,6 +28,11 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
   void _init(NotesInit event, Emitter<NotesState> emit) async {
     final notes = await _repository.getAllNotes();
     emit(NotesSuccess(notes));
+    _notesSubscription?.cancel();
+    _notesSubscription = _repository.notes.stream.listen((v) {
+      _notes = v;
+      add(NotesFetched(_notes));
+    });
   }
 
   void _addNote(AddNote event, Emitter<NotesState> emit) async {
@@ -39,5 +50,11 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
     } on DioError catch (e) {
       emit(NoteAddFail(e.message));
     }
+  }
+
+  @override
+  Future<void> close() {
+    _notesSubscription?.cancel();
+    return super.close();
   }
 }
