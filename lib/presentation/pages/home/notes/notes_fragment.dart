@@ -73,12 +73,17 @@ class NoteCard extends StatelessWidget {
                 const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
+                  children: [
                     // Icon(Icons.image_outlined, color: Styles.greyColor),
                     // SizedBox(width: 20),
                     //Icon(Icons.palette_outlined, color: Styles.greyColor),
                     //SizedBox(width: 20),
-                    Icon(Icons.delete_outlined, color: Styles.greyColor),
+                    GestureDetector(
+                        child: const Icon(Icons.delete_outlined,
+                            color: Styles.greyColor),
+                        onTap: () => context.read<NotesBloc>().add(DeleteNote(
+                              noteId: note.id,
+                            ))),
                   ],
                 ),
               ],

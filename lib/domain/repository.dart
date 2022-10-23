@@ -22,6 +22,8 @@ abstract class Repository {
   // * NOTES
   Future<NoteModel> addNote(NoteModel note);
 
+  Future<bool> deleteNote(int noteId);
+
   Future<List<NoteModel>> getAllNotes();
 
   // * CSV

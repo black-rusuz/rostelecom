@@ -103,6 +103,20 @@ class RepositoryImpl extends Repository {
   }
 
   @override
+  Future<bool> deleteNote(int noteId) async {
+    final sw = Stopwatch()..start();
+    debugPrint('DELETE NOTE $noteId');
+
+    client.options.headers = headers;
+    final response =
+        await client.post('$url/delete-note?id=$noteId');
+    debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
+    //Utils.printJson(response.data, true);
+
+    return response.statusCode == 200;
+  }
+
+  @override
   Future<List<NoteModel>> getAllNotes() async {
     final sw = Stopwatch()..start();
     debugPrint('ALL TASKS');

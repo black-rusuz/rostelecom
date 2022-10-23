@@ -18,3 +18,9 @@ class AddNote extends NotesEvent {
 
   const AddNote({required this.title, required this.description});
 }
+
+class DeleteNote extends NotesEvent {
+  final int noteId;
+
+  const DeleteNote({required this.noteId});
+}
