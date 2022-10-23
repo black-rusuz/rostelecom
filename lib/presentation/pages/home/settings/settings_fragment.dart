@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../main.dart';
 import '../../../../styles.dart';
 import '../../../widgets/base_button.dart';
 import '../../../widgets/base_switch.dart';
 import 'bloc/settings_bloc.dart';
-import 'package:provider/provider.dart';
 
 class SettingsFragment extends StatelessWidget {
   const SettingsFragment({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final thmode = Provider.of<DarkMode>(context);
+    final themeMode = Provider.of<DarkMode>(context);
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.73,
       child: Stack(
@@ -28,7 +27,7 @@ class SettingsFragment extends StatelessWidget {
               BaseTextSwitch(
                   label: 'Тёмная тема',
                   onTap: (v) =>
-                      context.read<SettingsBloc>().add(SetDarkMode(v, thmode))),
+                      context.read<SettingsBloc>().add(SetDarkMode(v, themeMode))),
             ],
           ),
           const Positioned(
