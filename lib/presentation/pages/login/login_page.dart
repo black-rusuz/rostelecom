@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
 
   LoginPage({super.key});
 
-  final login = TextEditingController(text: 'test@mail.com');
+  final login = TextEditingController(text: 'ksenia@mail.com');
   final password = TextEditingController(text: '123456789');
 
   @override

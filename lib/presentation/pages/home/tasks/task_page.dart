@@ -91,9 +91,14 @@ class TaskPage extends StatelessWidget {
                         fontSize: 20,
                       ),
                     ),
-                    Column(
-                      children: task.subtasks.map((e) => Text(e.name)).toList(),
-                    ),
+                    if (task.subtasks.isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Column(
+                          children:
+                              task.subtasks.map((e) => SubtaskItem(e)).toList(),
+                        ),
+                      ),
                     const SizedBox(height: 20),
                     BaseTextField('Название подзадачи', controller: subTask),
                     const SizedBox(height: 15),
@@ -114,6 +119,26 @@ class TaskPage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class SubtaskItem extends StatelessWidget {
+  final SubtaskModel subtask;
+
+  const SubtaskItem(this.subtask, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Checkbox(
+          value: subtask.status == TaskStatus.done,
+          onChanged: (v) {},
+        ),
+        Text(subtask.name),
+      ],
     );
   }
 }
@@ -246,9 +271,10 @@ class PeopleCard extends StatelessWidget {
                           name: Utils.stringToLetters(slave),
                         ),
                         const SizedBox(width: 8),
-                        Text(master ?? '',
-                            style:
-                                const TextStyle(fontWeight: FontWeight.w600)),
+                        Text(
+                          master ?? '',
+                          style: const TextStyle(fontWeight: FontWeight.w600),
+                        ),
                       ],
                     ),
                 ],
@@ -273,8 +299,10 @@ class PeopleCard extends StatelessWidget {
                         name: Utils.stringToLetters(slave),
                       ),
                       const SizedBox(width: 8),
-                      Text(slave,
-                          style: const TextStyle(fontWeight: FontWeight.w600)),
+                      Text(
+                        slave,
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
                     ],
                   ),
                 ],
