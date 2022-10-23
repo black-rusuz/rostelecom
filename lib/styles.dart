@@ -41,8 +41,8 @@ class Styles {
               ),
         ),
         tabBarTheme: const TabBarTheme(
-          labelColor: Colors.black,
-          unselectedLabelColor: Colors.grey,
+          labelColor: primaryColor,
+          unselectedLabelColor: greyColor,
         ),
       );
 

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../styles.dart';
 import '../../../widgets/base_button.dart';
 import '../../../widgets/base_switch.dart';
+import 'bloc/settings_bloc.dart';
 
 class SettingsFragment extends StatelessWidget {
   const SettingsFragment({super.key});
@@ -14,10 +16,16 @@ class SettingsFragment extends StatelessWidget {
       child: Stack(
         children: [
           Column(
-            children: const [
-              BaseTextSwitch(label: 'Уведомления'),
-              SizedBox(height: 15),
-              BaseTextSwitch(label: 'Тёмная тема'),
+            children: [
+              BaseTextSwitch(
+                  label: 'Уведомления',
+                  onTap: (v) =>
+                      context.read<SettingsBloc>().add(SetNotification(v))),
+              const SizedBox(height: 15),
+              BaseTextSwitch(
+                  label: 'Тёмная тема',
+                  onTap: (v) =>
+                      context.read<SettingsBloc>().add(SetDarkMode(v))),
             ],
           ),
           const Positioned(

@@ -5,8 +5,9 @@ import 'base_card.dart';
 
 class BaseTextSwitch extends StatefulWidget {
   final String label;
+  final ValueChanged<bool> onTap;
 
-  const BaseTextSwitch({super.key, required this.label});
+  const BaseTextSwitch({super.key, required this.label, required this.onTap});
 
   @override
   State<BaseTextSwitch> createState() => _BaseTextSwitchState();
@@ -15,7 +16,10 @@ class BaseTextSwitch extends StatefulWidget {
 class _BaseTextSwitchState extends State<BaseTextSwitch> {
   bool isActive = false;
 
-  void onChanged(bool value) => setState(() => isActive = value);
+  void onChanged(bool value) {
+    setState(() => isActive = value);
+    widget.onTap(value);
+  }
 
   @override
   Widget build(BuildContext context) {
