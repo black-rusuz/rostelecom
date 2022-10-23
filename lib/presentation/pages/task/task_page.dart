@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../data/model/task_model.dart';
+import '../../../data/utils.dart';
 import '../../../styles.dart';
 import '../../widgets/base_card.dart';
 
@@ -25,6 +26,8 @@ class TaskPage extends StatelessWidget {
                   MainInfo(
                     name: task.name,
                     description: task.description,
+                    duration: task.duration.value,
+                    endTime: task.endTime,
                   ),
                 ],
               ),
@@ -39,8 +42,16 @@ class TaskPage extends StatelessWidget {
 class MainInfo extends StatelessWidget {
   final String name;
   final String? description;
+  final String duration;
+  final DateTime endTime;
 
-  const MainInfo({super.key, required this.name, this.description});
+  const MainInfo({
+    super.key,
+    required this.name,
+    this.description,
+    required this.duration,
+    required this.endTime,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +66,7 @@ class MainInfo extends StatelessWidget {
             fontSize: 20,
           ),
         ),
-        if (description != null)
-          const SizedBox(height: 12),
+        if (description != null) const SizedBox(height: 12),
         Text(
           description!,
           style: const TextStyle(color: Styles.greyColor),
@@ -66,11 +76,11 @@ class MainInfo extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
           color: Colors.white,
           child: Row(
-            children: const [
-              TimeItem(label: 'День', icon: Icons.calendar_today_rounded),
-              Expanded(child: SizedBox()),
+            children: [
+              TimeItem(label: duration, icon: Icons.calendar_today_rounded),
+              const Expanded(child: SizedBox()),
               TimeItem(
-                label: '22 октября 2022',
+                label: Utils.dateToView(endTime),
                 icon: Icons.calendar_month_rounded,
               ),
             ],
@@ -93,18 +103,14 @@ class PeopleCard extends StatelessWidget {
       color: Colors.white,
       child: IntrinsicHeight(
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  children: const [Text('Куратор'), Text('Тест тест')],
-                ),
-                Container(width: 2, height: 40, color: Styles.greyColor),
-                Column(
-                  children: const [Text('Куратор'), Text('Тест тест')],
-                ),
-              ],
+              children: const [Text('Куратор'), Text('Тест тест')],
+            ),
+            Container(width: 2, height: 40, color: Styles.greyColor),
+            Column(
+              children: const [Text('Куратор'), Text('Тест тест')],
             ),
           ],
         ),
