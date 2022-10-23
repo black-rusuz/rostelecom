@@ -84,7 +84,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Styles.bgColor,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(

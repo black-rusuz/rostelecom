@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Styles {
-  static ThemeData get theme => ThemeData(
+  static ThemeData theme(bool isDark) => ThemeData(
+        brightness: isDark ? Brightness.dark : Brightness.light,
         primarySwatch: Colors.blue,
-        //scaffoldBackgroundColor: Styles.bg,
+        scaffoldBackgroundColor: isDark ? darkColor : bgColor,
         //iconTheme: const IconThemeData(color: Styles.icon),
         textTheme: GoogleFonts.robotoTextTheme().apply(
           displayColor: primaryColor,
         ),
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
           color: Colors.transparent,
           shadowColor: Colors.transparent,
-          titleTextStyle: TextStyle(color: Colors.black),
-          iconTheme: IconThemeData(color: secondaryColor),
+          titleTextStyle: TextStyle(color: isDark ? bgColor : primaryColor),
+          iconTheme: IconThemeData(color: isDark ? bgColor : secondaryColor),
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           type: BottomNavigationBarType.fixed,
@@ -29,16 +30,6 @@ class Styles {
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(10),
           ),
-        ),
-        elevatedButtonTheme: const ElevatedButtonThemeData(
-          style: ButtonStyle(
-              //padding: MaterialStatePropertyAll(
-              //  EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-              //),
-              //shape: MaterialStatePropertyAll(
-              //  RoundedRectangleBorder(borderRadius: Styles.borderRadius),
-              //),
-              ),
         ),
         tabBarTheme: const TabBarTheme(
           labelColor: primaryColor,
