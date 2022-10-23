@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../styles.dart';
-import '../note/note_form.dart';
-import '../task/task_form.dart';
-import 'hidden/hidden_fragment.dart';
-import 'hot/hot_fragment.dart';
+import 'hidden_fragment.dart';
+import 'hot_fragment.dart';
+import 'notes/note_form.dart';
 import 'notes/notes_fragment.dart';
 import 'settings/settings_fragment.dart';
 import 'tasks/bloc/tasks_bloc.dart';
+import 'tasks/task_form.dart';
 import 'tasks/tasks_fragment.dart';
 
 export 'notes/bloc/notes_bloc.dart';

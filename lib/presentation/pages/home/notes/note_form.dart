@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../styles.dart';
-import '../../widgets/base_button.dart';
-import '../../widgets/base_text_field.dart';
-import '../home/notes/bloc/notes_bloc.dart';
+import '../../../../styles.dart';
+import '../../../widgets/base_button.dart';
+import '../../../widgets/base_text_field.dart';
+import 'bloc/notes_bloc.dart';
 
 class NoteForm extends StatelessWidget {
   static const String name = '/new_note';

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/model/task_model.dart';
-import '../../../styles.dart';
-import '../../widgets/base_button.dart';
-import '../../widgets/base_selector.dart';
-import '../../widgets/base_switch.dart';
-import '../../widgets/base_text_field.dart';
-import '../home/tasks/bloc/tasks_bloc.dart';
+import '../../../../data/model/task_model.dart';
+import '../../../../styles.dart';
+import '../../../widgets/base_button.dart';
+import '../../../widgets/base_selector.dart';
+import '../../../widgets/base_switch.dart';
+import '../../../widgets/base_text_field.dart';
+import 'bloc/tasks_bloc.dart';
 
 class TaskForm extends StatefulWidget {
   static const String name = '/new_task';

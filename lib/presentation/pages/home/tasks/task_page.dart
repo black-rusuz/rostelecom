@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../data/model/task_model.dart';
-import '../../../data/utils.dart';
-import '../../../styles.dart';
-import '../../widgets/base_card.dart';
+import '../../../../data/model/task_model.dart';
+import '../../../../data/utils.dart';
+import '../../../../styles.dart';
+import '../../../widgets/base_card.dart';
 
 class TaskPage extends StatelessWidget {
   static const String name = '/task';
