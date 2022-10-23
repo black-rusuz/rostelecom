@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../data/model/task_model.dart';
 import '../../../../data/utils.dart';
 import '../../../../styles.dart';
+import '../../../widgets/base_avatar.dart';
 import '../../../widgets/base_card.dart';
 
 class TaskPage extends StatelessWidget {
@@ -32,6 +33,8 @@ class TaskPage extends StatelessWidget {
                     icon: task.icon,
                     iconColor: task.iconColor,
                     color: task.color,
+                    slave: task.slave.name,
+                    master: task.master?.name,
                   ),
                 ],
               ),
@@ -52,6 +55,8 @@ class MainInfo extends StatelessWidget {
   final IconData icon;
   final Color iconColor;
   final Color color;
+  final String slave;
+  final String? master;
 
   const MainInfo({
     super.key,
@@ -63,6 +68,8 @@ class MainInfo extends StatelessWidget {
     required this.icon,
     required this.iconColor,
     required this.color,
+    required this.slave,
+    this.master,
   });
 
   EdgeInsets get padding =>
@@ -101,7 +108,7 @@ class MainInfo extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-        PeopleCard(padding: padding),
+        PeopleCard(padding: padding, slave: slave, master: master),
         const SizedBox(height: 12),
         BaseCard(
           padding: padding,
@@ -129,9 +136,16 @@ class MainInfo extends StatelessWidget {
 }
 
 class PeopleCard extends StatelessWidget {
+  final String slave;
+  final String? master;
   final EdgeInsets padding;
 
-  const PeopleCard({super.key, required this.padding});
+  const PeopleCard({
+    super.key,
+    required this.padding,
+    required this.slave,
+    this.master,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -145,29 +159,51 @@ class PeopleCard extends StatelessWidget {
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     'Куратор',
                     style: TextStyle(color: Styles.greyColor),
                   ),
-                  Expanded(child: SizedBox()),
-                  //TODO: masterId
-                  Text('Тест тест'),
+                  const Expanded(child: SizedBox()),
+                  if (master != null)
+                    Row(
+                      children: [
+                        BaseAvatar(
+                          size: 20,
+                          fontSize: 10,
+                          name: Utils.stringToLetters(slave),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(master ?? '',
+                            style: const TextStyle(fontWeight: FontWeight.w600)),
+                      ],
+                    ),
                 ],
               ),
             ),
-            Container(width: 2, height: 40, color: Styles.greyColor),
+            Container(width: 2, height: 46, color: Styles.greyColor),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     'Исполнитель',
                     style: TextStyle(color: Styles.greyColor),
                   ),
-                  Expanded(child: SizedBox()),
-                  //TODO: slaveId
-                  Text('Тест тест'),
+                  const Expanded(child: SizedBox()),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      BaseAvatar(
+                        size: 20,
+                        fontSize: 10,
+                        name: Utils.stringToLetters(slave),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(slave,
+                          style: const TextStyle(fontWeight: FontWeight.w600)),
+                    ],
+                  ),
                 ],
               ),
             ),
