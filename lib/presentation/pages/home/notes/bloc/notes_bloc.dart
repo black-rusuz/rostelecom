@@ -22,6 +22,8 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
 
   NotesBloc(this._repository) : super(NotesInitial()) {
     on<NotesInit>(_init);
+    on<NotesFetched>((event, emit) => emit(NotesSuccess(event.notes)));
+
     on<AddNote>(_addNote);
   }
 

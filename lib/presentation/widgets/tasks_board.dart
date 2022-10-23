@@ -116,11 +116,11 @@ class TaskCard extends StatelessWidget {
                         title: Utils.dateToView(task.endTime),
                       ),
                       const Expanded(child: SizedBox()),
-                      if (task.slaveId != null)
+                      if (task.slave != null)
                         BaseAvatar(
                           size: 24,
                           fontSize: 12,
-                          name: Utils.stringToLetters('da s'),
+                          name: Utils.stringToLetters(task.slave.name),
                         )
                     ],
                   ),

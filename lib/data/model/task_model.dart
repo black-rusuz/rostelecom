@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../styles.dart';
 import '../utils.dart';
+import 'user_model.dart';
 
 class TaskModel extends Equatable {
   final int id;
@@ -12,8 +13,8 @@ class TaskModel extends Equatable {
   final DateTime endTime;
   final TaskStatus status;
   final bool isHidden;
-  final int masterId;
-  final int slaveId;
+  final UserModel? master;
+  final UserModel slave;
 
   const TaskModel({
     required this.id,
@@ -23,8 +24,8 @@ class TaskModel extends Equatable {
     required this.endTime,
     required this.status,
     required this.isHidden,
-    required this.masterId,
-    required this.slaveId,
+    required this.master,
+    required this.slave,
   });
 
   factory TaskModel.fromJson(Map<String, dynamic> json) {
@@ -36,9 +37,9 @@ class TaskModel extends Equatable {
       endTime: DateTime.parse(json['endTime']),
       status: TaskStatus.fromString(json['status']),
       isHidden: json['hidden'] > 0,
-      // !! TODO masterId
-      masterId: json['master_id'] ?? 0,
-      slaveId: json['user_id'],
+      master:
+          json['master'] != null ? UserModel.fromJson(json['master']) : null,
+      slave: UserModel.fromJson(json['user_id']),
     );
   }
 
@@ -47,9 +48,9 @@ class TaskModel extends Equatable {
         'description': description,
         'term': duration.value,
         'endTime': Utils.dateToJson(endTime),
-        'userId': slaveId,
+        'userId': slave.id,
         'hidden': isHidden,
-        'master': masterId,
+        'master': master?.id ?? 1,
       };
 
   @override
@@ -61,8 +62,8 @@ class TaskModel extends Equatable {
         endTime,
         status,
         isHidden,
-        masterId,
-        slaveId,
+        master,
+        slave,
       ];
 
   bool get isHot => endTime.difference(DateTime.now()).inDays == 0;

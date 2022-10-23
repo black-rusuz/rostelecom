@@ -32,7 +32,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
 
   Future<TasksSuccess> _refreshState(List<TaskModel> tasks) async {
     final user = await _repository.currentUser.first;
-    final assigned = tasks.where((e) => e.slaveId == user.id).length;
+    final assigned = tasks.where((e) => e.slave.id == user.id).length;
     final done = tasks.where((e) => e.status == TaskStatus.done).length;
 
     final hot = tasks.where((e) => e.isHot).length;
@@ -71,8 +71,8 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       endTime: _endTime(duration),
       status: event.slaveId != 1 ? TaskStatus.notAssigned : TaskStatus.inWork,
       isHidden: event.isHidden,
-      masterId: 1,
-      slaveId: event.slaveId,
+      master: await _repository.currentUser.first,
+      slave: await _repository.currentUser.first,
     );
 
     try {
