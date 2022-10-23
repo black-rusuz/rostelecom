@@ -33,3 +33,5 @@ class FilterBy extends TasksEvent {
 
   const FilterBy(this.pattern);
 }
+
+class GetCsv extends TasksEvent {}

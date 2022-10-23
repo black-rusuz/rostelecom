@@ -124,7 +124,7 @@ class RepositoryImpl extends Repository {
     debugPrint('CSV');
 
     client.options.headers = headers;
-    final response = await client.get('$url/excel');
+    final response = await client.get('$url/exel');
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
     //Utils.printJson(response.data, true);
 

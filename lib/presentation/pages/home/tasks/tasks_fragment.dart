@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../styles.dart';
@@ -13,7 +14,20 @@ class TasksFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TasksBloc, TasksState>(
+    return BlocConsumer<TasksBloc, TasksState>(
+      listener: (context, state) {
+        if (state is CopyCsv) {
+          Clipboard.setData(ClipboardData(text: state.csv));
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('CSV скопирован в буфер обмена'),
+          ));
+        }
+        if (state is TaskAddFail) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('Ошибка:\n${state.error}'),
+          ));
+        }
+      },
       buildWhen: (prev, next) => next is TasksSuccess,
       builder: (context, state) {
         if (state is TasksSuccess) {
@@ -29,6 +43,7 @@ class TasksFragment extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               BaseButton(
+                onTap: () => context.read<TasksBloc>().add(GetCsv()),
                 label: 'Выгрузить список в Excel',
                 icon: Icons.table_chart_outlined,
                 bgColor: Styles.greenColor.withOpacity(0.1),

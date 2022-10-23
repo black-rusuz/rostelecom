@@ -53,3 +53,12 @@ class TaskAddFail extends TasksState {
         error,
       ];
 }
+
+class CopyCsv extends TasksState {
+  final String csv;
+
+  const CopyCsv(this.csv);
+
+  @override
+  List<Object> get props => [csv];
+}

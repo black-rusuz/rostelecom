@@ -27,6 +27,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
 
     on<AddTask>(_addTask);
     on<FilterBy>(_filterTasks);
+    on<GetCsv>(_getCsv);
   }
 
   Future<TasksSuccess> _refreshState(List<TaskModel> tasks) async {
@@ -106,6 +107,15 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
               (e) => e.name.toLowerCase().contains(event.pattern.toLowerCase()))
           .toList(),
     ));
+  }
+
+  void _getCsv(GetCsv event, Emitter<TasksState> emit) async {
+    try {
+      final result = await _repository.getCsv();
+      emit(CopyCsv(result));
+    } on DioError catch (e) {
+      emit(TaskAddFail(e.message));
+    }
   }
 
   @override
