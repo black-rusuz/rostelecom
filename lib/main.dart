@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
 }
 
 class DarkMode with ChangeNotifier {
-  bool darkMode = true;
+  bool darkMode = false;
 
   void changeMode() {
     darkMode = !darkMode;
