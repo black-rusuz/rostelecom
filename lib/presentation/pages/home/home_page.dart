@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../styles.dart';
+import '../task/task_form.dart';
 import 'hidden/hidden_fragment.dart';
 import 'hot/hot_fragment.dart';
 import 'notes/notes_fragment.dart';
@@ -46,7 +47,7 @@ class _HomePageState extends State<HomePage> {
   BottomNavigationBarItem navItem(IconData icon) =>
       BottomNavigationBarItem(label: '', icon: Icon(icon));
 
-  void addTask() => context.read<TasksBloc>().add(AddTask());
+  void addTask() => Navigator.of(context).pushNamed(TaskForm.name);
 
   void addNote() => context.read<TasksBloc>().add(AddTask());
 

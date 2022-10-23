@@ -26,7 +26,7 @@ class TasksBoard extends StatelessWidget {
           TabBar(
             labelPadding: EdgeInsets.zero,
             indicatorColor: Colors.transparent,
-            tabs: TaskDuration.list.map(durationMapper).toList(),
+            tabs: TaskDuration.stringList.map(durationMapper).toList(),
           ),
           const SizedBox(height: 30),
           SizedBox(

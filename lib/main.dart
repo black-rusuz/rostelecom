@@ -5,6 +5,7 @@ import 'data/model/task_model.dart';
 import 'injection.dart';
 import 'presentation/pages/home/home_page.dart';
 import 'presentation/pages/login/login_page.dart';
+import 'presentation/pages/task/task_form.dart';
 import 'presentation/pages/task/task_page.dart';
 import 'styles.dart';
 
@@ -48,6 +49,8 @@ class MyApp extends StatelessWidget {
       case TaskPage.name:
         final task = settings.arguments as TaskModel;
         return router(TaskPage(task));
+      case TaskForm.name:
+        return router(const TaskForm());
     }
     return null;
   }

@@ -55,8 +55,7 @@ class MainInfo extends StatelessWidget {
             fontSize: 20,
           ),
         ),
-        if (description != null)
-          const SizedBox(height: 12),
+        if (description != null) const SizedBox(height: 12),
         Text(
           description!,
           style: const TextStyle(color: Styles.greyColor),
