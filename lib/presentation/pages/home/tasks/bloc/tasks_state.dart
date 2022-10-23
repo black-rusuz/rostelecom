@@ -33,3 +33,17 @@ class TasksSuccess extends TasksState {
         ...tasks,
       ];
 }
+
+class AddSuccess extends TasksState {}
+
+class AddFail extends TasksState {
+  final String error;
+
+  const AddFail(this.error);
+
+  @override
+  List<Object> get props => [
+        UniqueKey(),
+        error,
+      ];
+}

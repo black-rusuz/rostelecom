@@ -54,6 +54,7 @@ class RepositoryImpl extends Repository {
     final response = await client.post(
       '$url/add-task',
       data: task.toJson(),
+      //options: debug,
     );
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
     Utils.printJson(response.data, true);

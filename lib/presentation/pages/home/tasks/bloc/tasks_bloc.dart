@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -56,17 +58,42 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
   }
 
   void _addTask(AddTask event, Emitter<TasksState> emit) async {
-    //_repository.addTask(TaskModel(
-    //  id: 0,
-    //  name: 'Different Name',
-    //  description: 'Lorem zalupa ipsum',
-    //  duration: TaskDuration.day,
-    //  endTime: DateTime.now(),
-    //  status: TaskStatus.notAssigned,
-    //  isHidden: false,
-    //  masterId: 0,
-    //  slaveId: null,
-    //));
+    print(event);
+    final duration = TaskDuration.fromString(event.duration);
+    final task = TaskModel(
+      id: 0,
+      name: event.name,
+      description: event.description,
+      duration: duration,
+      endTime: endTime(duration),
+      status: event.slaveId != 1 ? TaskStatus.notAssigned : TaskStatus.inWork,
+      isHidden: event.isHidden,
+      masterId: 1,
+      slaveId: event.slaveId,
+    );
+    try {
+      await _repository.addTask(task);
+      emit(AddSuccess());
+    } on DioError catch (e) {
+      emit(AddFail(e.message));
+    }
+  }
+
+  DateTime endTime(TaskDuration duration) {
+    final now = DateTime.now();
+    switch (duration) {
+      case TaskDuration.day:
+        return now.add(const Duration(days: 1));
+      case TaskDuration.week:
+        return now.add(const Duration(days: 7));
+      case TaskDuration.month:
+        return now.add(const Duration(days: 31));
+      case TaskDuration.quarter:
+        return now.add(const Duration(days: 92));
+      case TaskDuration.undefined:
+        break;
+    }
+    return now;
   }
 
   @override

@@ -74,7 +74,6 @@ class TaskCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseCard(
-      color: Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
       margin: const EdgeInsets.only(bottom: 15),
       onTap: () => Navigator.of(context).pushNamed(
@@ -110,7 +109,8 @@ class TaskCard extends StatelessWidget {
                             color: Styles.redColor),
                       if (task.isHidden)
                         const Tag(Icons.visibility_off_rounded),
-                      Tag(task.icon, title: task.status.value, color: task.iconColor),
+                      Tag(task.icon,
+                          title: task.status.value, color: task.iconColor),
                       Tag(
                         Icons.edit_calendar,
                         title: Utils.dateToView(task.endTime),

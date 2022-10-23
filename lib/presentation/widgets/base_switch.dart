@@ -28,7 +28,6 @@ class _BaseTextSwitchState extends State<BaseTextSwitch> {
         Column(
           children: [
             BaseCard(
-              color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
