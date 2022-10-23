@@ -89,7 +89,6 @@ class MainInfo extends StatelessWidget {
         const SizedBox(height: 20),
         BaseCard(
           padding: padding,
-          color: Colors.white,
           child: Row(
             children: [
               TimeItem(label: duration, icon: Icons.calendar_today_rounded),
@@ -138,7 +137,6 @@ class PeopleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseCard(
       padding: padding,
-      color: Colors.white,
       child: IntrinsicHeight(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

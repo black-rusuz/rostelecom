@@ -12,7 +12,6 @@ class NotesFragment extends StatelessWidget {
     return Column(
       children: [
         BaseCard(
-          color: Colors.white,
           child: Column(
             children: [
               if (true)
