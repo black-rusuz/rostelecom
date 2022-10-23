@@ -25,6 +25,7 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
     on<NotesFetched>((event, emit) => emit(NotesSuccess(event.notes)));
 
     on<AddNote>(_addNote);
+    on<DeleteNote>(_deleteNote);
   }
 
   void _init(NotesInit event, Emitter<NotesState> emit) async {
@@ -53,6 +54,16 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
       emit(NoteAddFail(e.message));
     }
   }
+
+  void _deleteNote(DeleteNote event, Emitter<NotesState> emit) async {
+    try {
+      await _repository.deleteNote(event.noteId);
+      emit(NoteAddSuccess());
+    } on DioError catch (e) {
+      emit(NoteAddFail(e.message));
+    }
+  }
+
 
   @override
   Future<void> close() {
