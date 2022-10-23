@@ -97,6 +97,7 @@ class _HomePageState extends State<HomePage> {
             ),
             actions: [
               BlocBuilder<LoginBloc, LoginState>(
+                buildWhen: (prev, next) => next is LoginSuccess,
                 builder: (context, state) {
                   if (state is LoginSuccess) {
                     return Padding(
@@ -127,6 +128,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       bottomNavigationBar: BlocBuilder<TasksBloc, TasksState>(
+        buildWhen: (prev, next) => next is TasksSuccess,
         builder: (context, state) {
           if (state is TasksSuccess) {
             return BottomNavigationBar(

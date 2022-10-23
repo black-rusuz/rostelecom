@@ -14,6 +14,7 @@ class TasksFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TasksBloc, TasksState>(
+      buildWhen: (prev, next) => next is TasksSuccess,
       builder: (context, state) {
         if (state is TasksSuccess) {
           return Column(

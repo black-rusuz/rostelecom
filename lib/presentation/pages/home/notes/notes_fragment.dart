@@ -25,6 +25,7 @@ class NotesFragment extends StatelessWidget {
           ));
         }
       },
+      buildWhen: (prev, next) => next is NotesSuccess,
       builder: (context, state) {
         if (state is NotesSuccess) {
           return Column(

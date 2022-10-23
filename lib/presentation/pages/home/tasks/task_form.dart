@@ -41,7 +41,7 @@ class _TaskFormState extends State<TaskForm> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<TasksBloc, TasksState>(
+    return BlocListener<TasksBloc, TasksState>(
       listener: (context, state) {
         if (state is TaskAddSuccess) {
           Navigator.of(context).pop();
@@ -52,60 +52,58 @@ class _TaskFormState extends State<TaskForm> {
           ));
         }
       },
-      builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: const Text(
-              'Новая задача',
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-            ),
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text(
+            'Новая задача',
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
           ),
-          body: Padding(
-            padding: const EdgeInsets.fromLTRB(30, 20, 30, 40),
-            child: ListView(
-              children: [
-                BaseTextField('Название', controller: title),
-                const SizedBox(height: 12),
-                BaseTextField('Описание', lines: 5, controller: description),
-                const SizedBox(height: 12),
-                BaseSelector(
-                  values: TaskDuration.stringList,
-                  onSelect: (v) => setState(() => selectedDuration = v),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(30, 20, 30, 40),
+          child: ListView(
+            children: [
+              BaseTextField('Название', controller: title),
+              const SizedBox(height: 12),
+              BaseTextField('Описание', lines: 5, controller: description),
+              const SizedBox(height: 12),
+              BaseSelector(
+                values: TaskDuration.stringList,
+                onSelect: (v) => setState(() => selectedDuration = v),
+              ),
+              const SizedBox(height: 12),
+              BaseTextField('Исполнитель', controller: slave),
+              const SizedBox(height: 40),
+              const Text(
+                'Подзадачи',
+                style: TextStyle(
+                  color: Styles.secondaryColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20,
                 ),
-                const SizedBox(height: 12),
-                BaseTextField('Исполнитель', controller: slave),
-                const SizedBox(height: 40),
-                const Text(
-                  'Подзадачи',
-                  style: TextStyle(
-                    color: Styles.secondaryColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                BaseTextField('Название подзадачи', controller: subTask),
-                const SizedBox(height: 12),
-                const BaseButton(label: 'Добавить подзадачу', icon: Icons.add),
-                const SizedBox(height: 40),
-                BaseTextSwitch(
-                  label: 'Скрытая задача',
-                  onTap: (v) => setState(() => isHidden = v),
-                ),
-                const SizedBox(height: 40),
-                BaseButton(
-                  onTap: onTap,
-                  label: 'Создать',
-                  icon: Icons.add,
-                  bgColor: Styles.darkColor,
-                  textColor: Colors.white,
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 20),
+              BaseTextField('Название подзадачи', controller: subTask),
+              const SizedBox(height: 12),
+              const BaseButton(label: 'Добавить подзадачу', icon: Icons.add),
+              const SizedBox(height: 40),
+              BaseTextSwitch(
+                label: 'Скрытая задача',
+                onTap: (v) => setState(() => isHidden = v),
+              ),
+              const SizedBox(height: 40),
+              BaseButton(
+                onTap: onTap,
+                label: 'Создать',
+                icon: Icons.add,
+                bgColor: Styles.darkColor,
+                textColor: Colors.white,
+              ),
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
