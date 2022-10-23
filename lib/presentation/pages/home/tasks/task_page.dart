@@ -17,7 +17,35 @@ class TaskPage extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar(),
+          SliverAppBar(
+            centerTitle: true,
+            title: const Text(
+              'Подробнее',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+              ),
+            ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(4, 4, 30, 4),
+                child: GestureDetector(
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border.all(
+                          width: 2,
+                          color: Styles.secondaryColor.withOpacity(0.1)),
+                    ),
+                    child: const Icon(Icons.share_rounded, size: 20),
+                  ),
+                  onTap: () {},
+                ),
+              )
+            ],
+          ),
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(30, 20, 30, 40),
@@ -175,7 +203,8 @@ class PeopleCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(master ?? '',
-                            style: const TextStyle(fontWeight: FontWeight.w600)),
+                            style:
+                                const TextStyle(fontWeight: FontWeight.w600)),
                       ],
                     ),
                 ],
