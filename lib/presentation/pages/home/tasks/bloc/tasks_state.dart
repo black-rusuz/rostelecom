@@ -13,6 +13,8 @@ class TasksSuccess extends TasksState {
   final int total;
   final int assigned;
   final int done;
+  final int undone;
+  final int hot;
   final int percent;
   final List<TaskModel> tasks;
 
@@ -20,6 +22,8 @@ class TasksSuccess extends TasksState {
     required this.total,
     required this.assigned,
     required this.done,
+    required this.undone,
+    required this.hot,
     required this.percent,
     required this.tasks,
   });
@@ -29,6 +33,8 @@ class TasksSuccess extends TasksState {
         total,
         assigned,
         done,
+        undone,
+        hot,
         percent,
         ...tasks,
       ];

@@ -8,6 +8,7 @@ import '../../../../../data/model/task_model.dart';
 import '../../../../../domain/repository.dart';
 
 part 'tasks_event.dart';
+
 part 'tasks_state.dart';
 
 @injectable
@@ -40,6 +41,8 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       total: tasks.length,
       assigned: assigned,
       done: done,
+      undone: undone,
+      hot: hot,
       percent: percent,
       tasks: tasks,
     );

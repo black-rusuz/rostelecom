@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../styles.dart';
 import '../note/note_form.dart';
@@ -8,6 +9,7 @@ import 'hidden/hidden_fragment.dart';
 import 'hot/hot_fragment.dart';
 import 'notes/notes_fragment.dart';
 import 'settings/settings_fragment.dart';
+import 'tasks/bloc/tasks_bloc.dart';
 import 'tasks/tasks_fragment.dart';
 
 export 'notes/bloc/notes_bloc.dart';
@@ -43,8 +45,37 @@ class _HomePageState extends State<HomePage> {
     const SettingsFragment(),
   ];
 
-  BottomNavigationBarItem navItem(IconData icon) =>
-      BottomNavigationBarItem(label: '', icon: Icon(icon));
+  BottomNavigationBarItem navItem(IconData icon, [int? count, Color? color]) =>
+      BottomNavigationBarItem(
+          label: '',
+          icon: Stack(
+            children: [
+              Icon(icon),
+              if (count != null)
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  child: Container(
+                    width: 14,
+                    height: 14,
+                    padding: const EdgeInsets.symmetric(vertical: 1),
+                    decoration: BoxDecoration(
+                      color: color,
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Center(
+                      child: Text(
+                        count.toString(),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 8,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ));
 
   void addTask() => Navigator.of(context).pushNamed(TaskForm.name);
 
@@ -81,17 +112,36 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: selectedIndex,
-        onTap: setIndex,
-        items: [
-          navItem(Icons.home_rounded),
-          navItem(Icons.sticky_note_2_outlined),
-          navItem(Icons.local_fire_department),
-          navItem(Icons.visibility_off_rounded),
-          navItem(Icons.settings_rounded),
-        ],
-        backgroundColor: Colors.white,
+      bottomNavigationBar: BlocBuilder<TasksBloc, TasksState>(
+        builder: (context, state) {
+          if (state is TasksSuccess) {
+            return BottomNavigationBar(
+              currentIndex: selectedIndex,
+              onTap: setIndex,
+              items: [
+                navItem(Icons.home_rounded, state.undone, Styles.darkColor),
+                navItem(Icons.sticky_note_2_outlined),
+                navItem(
+                    Icons.local_fire_department, state.hot, Styles.redColor),
+                navItem(Icons.visibility_off_rounded),
+                navItem(Icons.settings_rounded),
+              ],
+              backgroundColor: Colors.white,
+            );
+          }
+          return BottomNavigationBar(
+            currentIndex: selectedIndex,
+            onTap: setIndex,
+            items: [
+              navItem(Icons.home_rounded),
+              navItem(Icons.sticky_note_2_outlined),
+              navItem(Icons.local_fire_department),
+              navItem(Icons.visibility_off_rounded),
+              navItem(Icons.settings_rounded),
+            ],
+            backgroundColor: Colors.white,
+          );
+        },
       ),
       floatingActionButton: selectedIndex == 0 || selectedIndex == 1
           ? FloatingActionButton.extended(
