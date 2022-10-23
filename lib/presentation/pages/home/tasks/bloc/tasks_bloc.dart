@@ -30,7 +30,11 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     final user = await _repository.currentUser.first;
     final assigned = tasks.where((e) => e.slaveId == user.id).length;
     final done = tasks.where((e) => e.status == TaskStatus.done).length;
-    final percent = (assigned * 100 / done).round();
+
+    final hot = tasks.where((e) => e.isHot).length;
+    final undone = _tasks.where((e) => e.status != TaskStatus.done).length;
+
+    final percent = (hot / undone * 100).round();
 
     return TasksSuccess(
       total: tasks.length,

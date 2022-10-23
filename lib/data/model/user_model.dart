@@ -2,13 +2,13 @@ import 'package:equatable/equatable.dart';
 
 class UserModel extends Equatable {
   final int? id;
-  final String email;
+  final String? email;
   final String? name;
   final String? phone;
 
   const UserModel({
     this.id,
-    required this.email,
+    this.email,
     this.name,
     this.phone,
   });

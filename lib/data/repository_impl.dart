@@ -19,22 +19,23 @@ class RepositoryImpl extends Repository {
   @override
   String get url => 'http://192.168.1.217/api';
 
-  // TODO: get from login
-  String token =
-      'I452uu1qPYAmb1nRm1oNkdHTTHnQEfedL7RvChu500KPShpJKpRWNWzNWMXGq9KP';
+  String token = '';
 
   @override
   Future<UserModel> login(String login, String password) async {
     final sw = Stopwatch()..start();
     debugPrint('LOGIN');
-    final response = await client.post('$url/login', data: {
+    final response = await client.post('$url/auth/login', data: {
       'email': login,
       'password': password,
     });
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
+    Utils.printJson(response.data, true);
 
     final user = UserModel.fromJson(response.data);
     currentUser.add(user);
+    token = response.data['token'];
+    debugPrint(token);
     return user;
   }
 
@@ -42,6 +43,8 @@ class RepositoryImpl extends Repository {
   Future<TaskModel> addTask(TaskModel task) async {
     final sw = Stopwatch()..start();
     debugPrint('ADD TASK');
+
+    client.options.headers['Authorization'] = 'Bearer $token';
     final response = await client.post(
       '$url/add-task',
       data: task.toJson(),
@@ -58,6 +61,8 @@ class RepositoryImpl extends Repository {
   Future<List<TaskModel>> getAllTasks() async {
     final sw = Stopwatch()..start();
     debugPrint('ALL TASKS');
+
+    client.options.headers['Authorization'] = 'Bearer $token';
     final response = await client.get('$url/all-task');
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
     Utils.printJson(response.data, true);

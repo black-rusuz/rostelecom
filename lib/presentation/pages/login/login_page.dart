@@ -14,8 +14,8 @@ class LoginPage extends StatelessWidget {
 
   LoginPage({super.key});
 
-  final login = TextEditingController();
-  final password = TextEditingController();
+  final login = TextEditingController(text: 'test@mail.com');
+  final password = TextEditingController(text: '123456789');
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +25,8 @@ class LoginPage extends StatelessWidget {
           Navigator.of(context).pushReplacementNamed(HomePage.name);
         }
         if (state is LoginError) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text('Ошибка авторизации'),
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('Ошибка авторизации:\n${state.error}'),
           ));
         }
       },

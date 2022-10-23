@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
       title: 'Rostelecom',
       theme: Styles.theme,
       onGenerateRoute: routeByName,
-      initialRoute: HomePage.name,
-      // initialRoute: LoginPage.name,
+      // initialRoute: HomePage.name,
+      initialRoute: LoginPage.name,
     );
   }
 
