@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rostelecom/presentation/pages/note/note_form.dart';
 
 import 'data/model/task_model.dart';
 import 'injection.dart';
@@ -51,6 +52,8 @@ class MyApp extends StatelessWidget {
         return router(TaskPage(task));
       case TaskForm.name:
         return router(const TaskForm());
+      case NoteForm.name:
+        return router(const NoteForm());
     }
     return null;
   }

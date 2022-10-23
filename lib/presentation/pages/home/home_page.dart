@@ -1,14 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../styles.dart';
+import '../note/note_form.dart';
 import '../task/task_form.dart';
 import 'hidden/hidden_fragment.dart';
 import 'hot/hot_fragment.dart';
 import 'notes/notes_fragment.dart';
 import 'settings/settings_fragment.dart';
-import 'tasks/bloc/tasks_bloc.dart';
 import 'tasks/tasks_fragment.dart';
 
 export 'notes/bloc/notes_bloc.dart';
@@ -49,7 +48,7 @@ class _HomePageState extends State<HomePage> {
 
   void addTask() => Navigator.of(context).pushNamed(TaskForm.name);
 
-  void addNote() => context.read<TasksBloc>().add(AddTask());
+  void addNote() => Navigator.of(context).pushNamed(NoteForm.name);
 
   @override
   Widget build(BuildContext context) {
