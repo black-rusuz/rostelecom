@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../data/model/task_model.dart';
 import '../../data/utils.dart';
 import '../../styles.dart';
-import 'base_avatar.dart';
 import '../pages/home/tasks/task_page.dart';
+import 'base_avatar.dart';
 import 'base_card.dart';
 
 class TasksBoard extends StatelessWidget {

@@ -27,8 +27,9 @@ class SettingsFragment extends StatelessWidget {
               BaseTextSwitch(
                   label: 'Тёмная тема',
                   initial: themeMode.darkMode,
-                  onTap: (v) =>
-                      context.read<SettingsBloc>().add(SetDarkMode(v, themeMode))),
+                  onTap: (v) => context
+                      .read<SettingsBloc>()
+                      .add(SetDarkMode(v, themeMode))),
             ],
           ),
           const Positioned(
