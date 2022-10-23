@@ -160,10 +160,10 @@ class Tag extends StatelessWidget {
               padding: const EdgeInsets.only(left: 6),
               child: Text(
                 title!,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 10,
                   height: 1,
-                  color: Styles.greyColor,
+                  color: color ?? Styles.greyColor,
                 ),
               ),
             ),
