@@ -37,7 +37,7 @@ class TaskForm extends StatelessWidget {
           children: [
             const BaseTextField('Название'),
             const SizedBox(height: 12),
-            const BaseTextField('Описание'),
+            const BaseTextField('Описание', lines: 5),
             const SizedBox(height: 12),
             BaseCard(
               color: Colors.white,

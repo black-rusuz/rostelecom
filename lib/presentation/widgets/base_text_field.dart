@@ -6,12 +6,14 @@ class BaseTextField extends StatelessWidget {
   final String label;
   final TextEditingController? controller;
   final Icon? icon;
+  final int? lines;
 
   const BaseTextField(
     this.label, {
     super.key,
     this.controller,
     this.icon,
+    this.lines,
   });
 
   @override
@@ -23,6 +25,7 @@ class BaseTextField extends StatelessWidget {
       child: TextField(
         controller: controller,
         style: const TextStyle(fontSize: 14),
+        maxLines: lines ?? 1,
         decoration: InputDecoration(
           prefixIcon: icon,
           hintText: label,
