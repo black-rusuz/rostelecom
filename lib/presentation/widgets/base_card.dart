@@ -15,7 +15,7 @@ class BaseCard extends StatelessWidget {
     super.key,
     this.padding = EdgeInsets.zero,
     this.margin = EdgeInsets.zero,
-    this.color = Colors.black12,
+    this.color = Colors.white,
     this.borderRadius = 10,
     this.border,
     this.onTap,

@@ -20,12 +20,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Rostelecom',
-      theme: Styles.theme,
-      onGenerateRoute: routeByName,
-      // initialRoute: HomePage.name,
-      initialRoute: LoginPage.name,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => sl<LoginBloc>()),
+        BlocProvider(create: (_) => sl<TasksBloc>()..add(TasksInit())),
+        BlocProvider(create: (_) => sl<NotesBloc>()..add(NotesInit())),
+      ],
+      child: MaterialApp(
+        title: 'Rostelecom',
+        theme: Styles.theme,
+        onGenerateRoute: routeByName,
+        // initialRoute: HomePage.name,
+        initialRoute: LoginPage.name,
+      ),
     );
   }
 
@@ -35,18 +42,9 @@ class MyApp extends StatelessWidget {
   MaterialPageRoute? routeByName(RouteSettings settings) {
     switch (settings.name) {
       case LoginPage.name:
-        return router(BlocProvider(
-          create: (_) => sl<LoginBloc>(),
-          child: LoginPage(),
-        ));
+        return router(LoginPage());
       case HomePage.name:
-        return router(MultiBlocProvider(
-          providers: [
-            BlocProvider(create: (_) => sl<TasksBloc>()..add(TasksInit())),
-            BlocProvider(create: (_) => sl<NotesBloc>()..add(NotesInit())),
-          ],
-          child: const HomePage(),
-        ));
+        return router(const HomePage());
       case TaskPage.name:
         final task = settings.arguments as TaskModel;
         return router(TaskPage(task));

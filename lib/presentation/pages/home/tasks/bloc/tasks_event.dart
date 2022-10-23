@@ -12,4 +12,18 @@ class TasksFetched extends TasksEvent {
   TasksFetched(this.tasks);
 }
 
-class AddTask extends TasksEvent {}
+class AddTask extends TasksEvent {
+  final String name;
+  final String? description;
+  final String duration;
+  final bool isHidden;
+  final int slaveId;
+
+  AddTask({
+    required this.name,
+    required this.description,
+    required this.duration,
+    required this.isHidden,
+    required this.slaveId,
+  });
+}
