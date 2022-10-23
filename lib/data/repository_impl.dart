@@ -105,7 +105,7 @@ class RepositoryImpl extends Repository {
   @override
   Future<List<NoteModel>> getAllNotes() async {
     final sw = Stopwatch()..start();
-    debugPrint('ALL TASKS');
+    debugPrint('ALL NOTES');
 
     client.options.headers = headers;
     final response = await client.get('$url/list-note');

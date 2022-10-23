@@ -7,6 +7,7 @@ import '../../widgets/base_avatar.dart';
 import '../login/bloc/login_bloc.dart';
 import 'hidden_fragment.dart';
 import 'hot_fragment.dart';
+import 'notes/bloc/notes_bloc.dart';
 import 'notes/note_form.dart';
 import 'notes/notes_fragment.dart';
 import 'settings/settings_fragment.dart';
@@ -80,6 +81,11 @@ class _HomePageState extends State<HomePage> {
             ],
           ));
 
+  Future<void> refresh() async {
+    context.read<TasksBloc>().add(TasksInit());
+    context.read<NotesBloc>().add(NotesInit());
+  }
+
   void addTask() => Navigator.of(context).pushNamed(TaskForm.name);
 
   void addNote() => Navigator.of(context).pushNamed(NoteForm.name);
@@ -87,39 +93,43 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            centerTitle: true,
-            title: Text(
-              titles[selectedIndex],
-              style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-            ),
-            actions: [
-              BlocBuilder<LoginBloc, LoginState>(
-                buildWhen: (prev, next) => next is LoginSuccess,
-                builder: (context, state) {
-                  return Padding(
-                    padding: const EdgeInsets.fromLTRB(4, 4, 30, 4),
-                    child: BaseAvatar(
-                      size: 50,
-                      fontSize: 20,
-                      name: Utils.stringToLetters(
-                        state is LoginSuccess ? state.user.name : 'JD',
-                      ),
-                    ),
-                  );
-                },
+      body: RefreshIndicator(
+        onRefresh: refresh,
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              centerTitle: true,
+              title: Text(
+                titles[selectedIndex],
+                style:
+                    const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
               ),
-            ],
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(30, 20, 30, 40),
-              child: pages[selectedIndex],
+              actions: [
+                BlocBuilder<LoginBloc, LoginState>(
+                  buildWhen: (prev, next) => next is LoginSuccess,
+                  builder: (context, state) {
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(4, 4, 30, 4),
+                      child: BaseAvatar(
+                        size: 50,
+                        fontSize: 20,
+                        name: Utils.stringToLetters(
+                          state is LoginSuccess ? state.user.name : 'JD',
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
-          )
-        ],
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(30, 20, 30, 40),
+                child: pages[selectedIndex],
+              ),
+            )
+          ],
+        ),
       ),
       bottomNavigationBar: BlocBuilder<TasksBloc, TasksState>(
         buildWhen: (prev, next) => next is TasksSuccess,
