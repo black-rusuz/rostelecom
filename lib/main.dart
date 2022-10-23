@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
       case TaskForm.name:
         return router(const TaskForm());
       case NoteForm.name:
-        return router(const NoteForm());
+        return router(NoteForm());
     }
     return null;
   }

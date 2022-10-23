@@ -1,60 +1,89 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../data/model/note_model.dart';
 import '../../../../styles.dart';
 import '../../../widgets/base_card.dart';
+import 'bloc/notes_bloc.dart';
 
 class NotesFragment extends StatelessWidget {
   const NotesFragment({super.key});
 
+  Widget notesMapper(NoteModel note) => NoteCard(note);
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        BaseCard(
-          child: Column(
-            children: [
-              if (true)
-                ClipRRect(
-                  borderRadius:
-                      const BorderRadius.vertical(top: Radius.circular(10)),
-                  child: CachedNetworkImage(
-                      imageUrl:
-                          'https://images.unsplash.com/photo-1661956601349-f61c959a8fd4'),
+    return BlocConsumer<NotesBloc, NotesState>(
+      listener: (context, state) {
+        if (state is NoteAddSuccess) {
+          Navigator.of(context).pop();
+        }
+        if (state is NoteAddFail) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('Ошибка:\n${state.error}'),
+          ));
+        }
+      },
+      builder: (context, state) {
+        if (state is NotesSuccess) {
+          return Column(
+            children: state.notes.map(notesMapper).toList(),
+          );
+        }
+        return const Center(child: CircularProgressIndicator());
+      },
+    );
+  }
+}
+
+class NoteCard extends StatelessWidget {
+  final NoteModel note;
+
+  const NoteCard(this.note, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BaseCard(
+      child: Column(
+        children: [
+          if (note.imageUrl != null)
+            ClipRRect(
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(10),
+              ),
+              child: CachedNetworkImage(imageUrl: note.imageUrl!),
+            ),
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  note.name,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-              Padding(
-                padding: const EdgeInsets.all(15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Название',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    const Text(
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'),
-                    const SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: const [
-                        Icon(Icons.image_outlined, color: Styles.greyColor),
-                        SizedBox(width: 20),
-                        Icon(Icons.palette_outlined, color: Styles.greyColor),
-                        SizedBox(width: 20),
-                        Icon(Icons.delete_outlined, color: Styles.greyColor),
-                      ],
-                    ),
+                const SizedBox(height: 8),
+                Text(note.description),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: const [
+                    Icon(Icons.image_outlined, color: Styles.greyColor),
+                    SizedBox(width: 20),
+                    //Icon(Icons.palette_outlined, color: Styles.greyColor),
+                    //SizedBox(width: 20),
+                    Icon(Icons.delete_outlined, color: Styles.greyColor),
                   ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

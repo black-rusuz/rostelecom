@@ -5,12 +5,14 @@ class NoteModel extends Equatable {
   final String name;
   final String description;
   final int userId;
+  final String? imageUrl;
 
   const NoteModel({
     required this.id,
     required this.name,
     required this.description,
     required this.userId,
+    this.imageUrl,
   });
 
   factory NoteModel.fromJson(Map<String, dynamic> json) {
@@ -19,6 +21,7 @@ class NoteModel extends Equatable {
       name: json['name'],
       description: json['description'],
       userId: json['user_id'],
+      imageUrl: json['image_url'],
     );
   }
 
@@ -33,5 +36,6 @@ class NoteModel extends Equatable {
         name,
         description,
         userId,
+        imageUrl,
       ];
 }

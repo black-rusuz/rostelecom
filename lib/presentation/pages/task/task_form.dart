@@ -43,12 +43,12 @@ class _TaskFormState extends State<TaskForm> {
   Widget build(BuildContext context) {
     return BlocConsumer<TasksBloc, TasksState>(
       listener: (context, state) {
-        if (state is AddSuccess) {
+        if (state is TaskAddSuccess) {
           Navigator.of(context).pop();
         }
-        if (state is AddFail) {
+        if (state is TaskAddFail) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text('Ошибка добавления:\n${state.error}'),
+            content: Text('Ошибка:\n${state.error}'),
           ));
         }
       },

@@ -40,12 +40,12 @@ class TasksSuccess extends TasksState {
       ];
 }
 
-class AddSuccess extends TasksState {}
+class TaskAddSuccess extends TasksState {}
 
-class AddFail extends TasksState {
+class TaskAddFail extends TasksState {
   final String error;
 
-  const AddFail(this.error);
+  const TaskAddFail(this.error);
 
   @override
   List<Object> get props => [
