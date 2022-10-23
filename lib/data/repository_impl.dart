@@ -12,14 +12,20 @@ import 'utils.dart';
 class RepositoryImpl extends Repository {
   final Dio client;
 
-  RepositoryImpl({required this.client}) {
-    client.options.headers['X-Authorization'] = token;
-  }
+  RepositoryImpl({required this.client});
 
   @override
   String get url => 'http://192.168.1.217/api';
 
   String token = '';
+
+  Map<String, String> get headers => {
+        'Authorization': 'Bearer $token',
+        'Connection': 'keep-alive',
+        'Content-Type': 'application/json',
+      };
+
+  final debug = Options(validateStatus: (status) => true);
 
   @override
   Future<UserModel> login(String login, String password) async {
@@ -44,7 +50,7 @@ class RepositoryImpl extends Repository {
     final sw = Stopwatch()..start();
     debugPrint('ADD TASK');
 
-    client.options.headers['Authorization'] = 'Bearer $token';
+    client.options.headers = headers;
     final response = await client.post(
       '$url/add-task',
       data: task.toJson(),
@@ -62,10 +68,10 @@ class RepositoryImpl extends Repository {
     final sw = Stopwatch()..start();
     debugPrint('ALL TASKS');
 
-    client.options.headers['Authorization'] = 'Bearer $token';
+    client.options.headers = headers;
     final response = await client.get('$url/all-task');
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
-    Utils.printJson(response.data, true);
+    //Utils.printJson(response.data, true);
 
     final newTasks =
         (response.data as List).map((e) => TaskModel.fromJson(e)).toList();
@@ -74,9 +80,21 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<NoteModel> addNote(TaskModel task) {
-    // TODO: implement addNote
-    throw UnimplementedError();
+  Future<NoteModel> addNote(NoteModel note) async {
+    final sw = Stopwatch()..start();
+    debugPrint('ADD NOTE');
+
+    client.options.headers = headers;
+    final response = await client.post(
+      '$url/create-note',
+      data: note.toJson(),
+    );
+    debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
+    Utils.printJson(response.data, true);
+
+    final newNote = NoteModel.fromJson(response.data['task'].first);
+    //getAllNotes();
+    return newNote;
   }
 
   @override

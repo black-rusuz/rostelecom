@@ -12,8 +12,8 @@ class TaskModel extends Equatable {
   final DateTime endTime;
   final TaskStatus status;
   final bool isHidden;
-  final int? masterId;
-  final int? slaveId;
+  final int masterId;
+  final int slaveId;
 
   const TaskModel({
     required this.id,
@@ -37,7 +37,7 @@ class TaskModel extends Equatable {
       status: TaskStatus.fromString(json['status']),
       isHidden: json['hidden'] > 0,
       // !! TODO masterId
-      masterId: json['master_id'],
+      masterId: json['master_id'] ?? 0,
       slaveId: json['user_id'],
     );
   }
@@ -120,7 +120,6 @@ enum TaskDuration {
   final String value;
 
   factory TaskDuration.fromString(String data) {
-    print(data);
     switch (data.toLowerCase()) {
       case 'день':
         return TaskDuration.day;
@@ -152,7 +151,6 @@ enum TaskStatus {
   final String value;
 
   factory TaskStatus.fromString(String data) {
-    print(data);
     switch (data.toLowerCase()) {
       case 'не назначено':
         return TaskStatus.notAssigned;
