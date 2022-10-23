@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/model/task_model.dart';
-import '../../../styles.dart';
-import '../../widgets/base_button.dart';
-import '../../widgets/base_selector.dart';
-import '../../widgets/base_switch.dart';
-import '../../widgets/base_text_field.dart';
-import '../home/tasks/bloc/tasks_bloc.dart';
+import '../../../../data/model/task_model.dart';
+import '../../../../styles.dart';
+import '../../../widgets/base_button.dart';
+import '../../../widgets/base_selector.dart';
+import '../../../widgets/base_switch.dart';
+import '../../../widgets/base_text_field.dart';
+import 'bloc/tasks_bloc.dart';
 
 class TaskForm extends StatefulWidget {
   static const String name = '/new_task';
@@ -43,12 +43,12 @@ class _TaskFormState extends State<TaskForm> {
   Widget build(BuildContext context) {
     return BlocConsumer<TasksBloc, TasksState>(
       listener: (context, state) {
-        if (state is AddSuccess) {
+        if (state is TaskAddSuccess) {
           Navigator.of(context).pop();
         }
-        if (state is AddFail) {
+        if (state is TaskAddFail) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text('Ошибка добавления:\n${state.error}'),
+            content: Text('Ошибка:\n${state.error}'),
           ));
         }
       },

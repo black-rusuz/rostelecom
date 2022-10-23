@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/utils.dart';
 import '../../../styles.dart';
+import 'hidden_fragment.dart';
+import 'hot_fragment.dart';
+import 'notes/note_form.dart';
 import '../../widgets/base_avatar.dart';
 import '../login/bloc/login_bloc.dart';
 import '../note/note_form.dart';
@@ -12,6 +15,7 @@ import 'hot/hot_fragment.dart';
 import 'notes/notes_fragment.dart';
 import 'settings/settings_fragment.dart';
 import 'tasks/bloc/tasks_bloc.dart';
+import 'tasks/task_form.dart';
 import 'tasks/tasks_fragment.dart';
 
 export 'notes/bloc/notes_bloc.dart';

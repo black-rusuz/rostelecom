@@ -73,11 +73,12 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       masterId: 1,
       slaveId: event.slaveId,
     );
+
     try {
       await _repository.addTask(task);
-      emit(AddSuccess());
+      emit(TaskAddSuccess());
     } on DioError catch (e) {
-      emit(AddFail(e.message));
+      emit(TaskAddFail(e.message));
     }
   }
 

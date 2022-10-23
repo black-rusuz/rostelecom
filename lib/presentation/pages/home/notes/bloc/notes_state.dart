@@ -17,3 +17,17 @@ class NotesSuccess extends NotesState {
   @override
   List<Object> get props => notes;
 }
+
+class NoteAddSuccess extends NotesState {}
+
+class NoteAddFail extends NotesState {
+  final String error;
+
+  const NoteAddFail(this.error);
+
+  @override
+  List<Object> get props => [
+        UniqueKey(),
+        error,
+      ];
+}

@@ -6,4 +6,9 @@ abstract class NotesEvent {
 
 class NotesInit extends NotesEvent {}
 
-class AddNote extends NotesEvent {}
+class AddNote extends NotesEvent {
+  final String title;
+  final String description;
+
+  const AddNote({required this.title, required this.description});
+}

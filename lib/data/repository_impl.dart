@@ -97,8 +97,8 @@ class RepositoryImpl extends Repository {
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
     Utils.printJson(response.data, true);
 
-    final newNote = NoteModel.fromJson(response.data['task'].first);
-    //getAllNotes();
+    final newNote = NoteModel.fromJson(response.data['task']);
+    getAllNotes();
     return newNote;
   }
 
@@ -108,7 +108,7 @@ class RepositoryImpl extends Repository {
     debugPrint('ALL TASKS');
 
     client.options.headers = headers;
-    final response = await client.get('$url/all-note');
+    final response = await client.get('$url/list-note');
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
     //Utils.printJson(response.data, true);
 

@@ -5,10 +5,10 @@ import 'package:provider/provider.dart';
 import 'data/model/task_model.dart';
 import 'injection.dart';
 import 'presentation/pages/home/home_page.dart';
+import 'presentation/pages/home/notes/note_form.dart';
+import 'presentation/pages/home/tasks/task_form.dart';
+import 'presentation/pages/home/tasks/task_page.dart';
 import 'presentation/pages/login/login_page.dart';
-import 'presentation/pages/note/note_form.dart';
-import 'presentation/pages/task/task_form.dart';
-import 'presentation/pages/task/task_page.dart';
 import 'styles.dart';
 
 void main() {
@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
       case TaskForm.name:
         return router(const TaskForm());
       case NoteForm.name:
-        return router(const NoteForm());
+        return router(NoteForm());
     }
     return null;
   }
