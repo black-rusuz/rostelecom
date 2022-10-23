@@ -165,7 +165,7 @@ class Tag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+      padding: EdgeInsets.symmetric(vertical: 4, horizontal: title != null ? 8 : 4),
       margin: const EdgeInsets.only(right: 8),
       decoration: BoxDecoration(
         color: color != null ? color?.withOpacity(0.1) : Styles.tagBgColor,
