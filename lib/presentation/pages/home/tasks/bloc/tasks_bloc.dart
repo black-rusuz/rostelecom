@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../../data/model/subtask_model.dart';
 import '../../../../../data/model/task_model.dart';
 import '../../../../../domain/repository.dart';
 
@@ -28,6 +29,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     on<AddTask>(_addTask);
     on<FilterBy>(_filterTasks);
     on<GetCsv>(_getCsv);
+    on<AddSubTask>(_addSubTask);
   }
 
   Future<TasksSuccess> _refreshState(List<TaskModel> tasks) async {
@@ -114,6 +116,15 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     try {
       final result = await _repository.getCsv();
       emit(CopyCsv(result));
+    } on DioError catch (e) {
+      emit(TaskAddFail(e.message));
+    }
+  }
+
+  void _addSubTask(AddSubTask event, Emitter<TasksState> emit) async {
+    try {
+      await _repository.addSubtasks([event.subtask]);
+      emit(TaskAddSuccess());
     } on DioError catch (e) {
       emit(TaskAddFail(e.message));
     }

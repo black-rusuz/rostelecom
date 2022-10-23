@@ -35,3 +35,9 @@ class FilterBy extends TasksEvent {
 }
 
 class GetCsv extends TasksEvent {}
+
+class AddSubTask extends TasksEvent {
+  final SubtaskModel subtask;
+
+  AddSubTask(this.subtask);
+}

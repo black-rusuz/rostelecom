@@ -20,7 +20,7 @@ abstract class Repository {
 
   Future<List<TaskModel>> getAllTasks();
 
-  Future<SubtaskModel> addSubTask(SubtaskModel subtask);
+  Future<List<SubtaskModel>> addSubtasks(List<SubtaskModel> subtasks);
 
   // * NOTES
   Future<NoteModel> addNote(NoteModel note);

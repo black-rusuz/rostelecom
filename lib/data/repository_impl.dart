@@ -86,20 +86,22 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<SubtaskModel> addSubTask(SubtaskModel subtask) async {
+  Future<List<SubtaskModel>> addSubtasks(List<SubtaskModel> subtasks) async {
     final sw = Stopwatch()..start();
     debugPrint('ADD SUBTASK');
 
     client.options.headers = headers;
     final response = await client.post(
       '$url/create-subtask',
-      data: subtask.toJson(),
+      data: subtasks.map((e) => e.toJson()).toList(),
     );
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
     //Utils.printJson(response.data, true);
 
-    final newSubtask = SubtaskModel.fromJson(response.data);
-    return newSubtask;
+    final newSubtasks =
+        (response.data as List).map((e) => SubtaskModel.fromJson(e)).toList();
+    getAllTasks();
+    return newSubtasks;
   }
 
   @override

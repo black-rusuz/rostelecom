@@ -25,8 +25,6 @@ class _TaskFormState extends State<TaskForm> {
 
   final slave = TextEditingController();
 
-  final subTask = TextEditingController();
-
   String selectedDuration = TaskDuration.stringList.first;
 
   bool isHidden = false;
@@ -74,19 +72,6 @@ class _TaskFormState extends State<TaskForm> {
               ),
               const SizedBox(height: 15),
               BaseTextField('Исполнитель', controller: slave),
-              const SizedBox(height: 40),
-              const Text(
-                'Подзадачи',
-                style: TextStyle(
-                  color: Styles.secondaryColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20,
-                ),
-              ),
-              const SizedBox(height: 20),
-              BaseTextField('Название подзадачи', controller: subTask),
-              const SizedBox(height: 15),
-              const BaseButton(label: 'Добавить подзадачу', icon: Icons.add),
               const SizedBox(height: 40),
               BaseTextSwitch(
                 label: 'Скрытая задача',
