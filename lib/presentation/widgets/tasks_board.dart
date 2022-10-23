@@ -1,9 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/model/task_model.dart';
 import '../../data/utils.dart';
 import '../../styles.dart';
+import 'base_avatar.dart';
 import '../pages/home/tasks/task_page.dart';
 import 'base_card.dart';
 
@@ -116,13 +116,11 @@ class TaskCard extends StatelessWidget {
                         title: Utils.dateToView(task.endTime),
                       ),
                       const Expanded(child: SizedBox()),
-                      ClipOval(
-                        child: CachedNetworkImage(
-                          width: 24,
-                          height: 24,
-                          imageUrl: 'https://github.com/gsusha.png',
-                        ),
-                      ),
+                      if (task.slaveId != null)
+                        BaseAvatar(
+                            size: 24,
+                            fontSize: 12,
+                            name: Utils.stringToLetters('da s'))
                     ],
                   ),
                 ],

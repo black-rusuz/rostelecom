@@ -5,11 +5,13 @@ import '../../styles.dart';
 class BaseAvatar extends StatelessWidget {
   final double size;
   final String name;
+  final double fontSize;
 
   const BaseAvatar({
     super.key,
     required this.size,
     required this.name,
+    required this.fontSize,
   });
 
   @override
@@ -25,10 +27,10 @@ class BaseAvatar extends StatelessWidget {
       child: Center(
         child: Text(
           name,
-          style: const TextStyle(
+          style: TextStyle(
             color: Styles.darkColor,
             fontWeight: FontWeight.w600,
-            fontSize: 20,
+            fontSize: fontSize,
           ),
         ),
       ),
