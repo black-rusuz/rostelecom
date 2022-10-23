@@ -49,6 +49,7 @@ class TaskModel extends Equatable {
         'endTime': Utils.dateToJson(endTime),
         'userId': slaveId,
         'hidden': isHidden,
+        'master': masterId,
       };
 
   @override
@@ -119,14 +120,15 @@ enum TaskDuration {
   final String value;
 
   factory TaskDuration.fromString(String data) {
-    switch (data) {
-      case 'День':
+    print(data);
+    switch (data.toLowerCase()) {
+      case 'день':
         return TaskDuration.day;
-      case 'Неделя':
+      case 'неделя':
         return TaskDuration.week;
-      case 'Месяц':
+      case 'месяц':
         return TaskDuration.month;
-      case 'Квартал':
+      case 'квартал':
         return TaskDuration.quarter;
     }
     return TaskDuration.undefined;
@@ -150,17 +152,14 @@ enum TaskStatus {
   final String value;
 
   factory TaskStatus.fromString(String data) {
-    switch (data) {
-      case 'Не назначено':
+    print(data);
+    switch (data.toLowerCase()) {
       case 'не назначено':
         return TaskStatus.notAssigned;
-      case 'В работе':
       case 'в работе':
         return TaskStatus.inWork;
-      case 'На проверке':
       case 'на проверке':
         return TaskStatus.onReview;
-      case 'Готово':
       case 'готово':
         return TaskStatus.done;
     }
