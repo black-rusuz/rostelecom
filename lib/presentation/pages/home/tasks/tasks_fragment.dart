@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../styles.dart';
 import '../../../widgets/base_button.dart';
 import '../../../widgets/base_card.dart';
-import '../../../widgets/base_text_field.dart';
+import '../../../widgets/search_field.dart';
 import '../../../widgets/tasks_board.dart';
 import 'bloc/tasks_bloc.dart';
 
@@ -18,10 +18,7 @@ class TasksFragment extends StatelessWidget {
         if (state is TasksSuccess) {
           return Column(
             children: [
-              const BaseTextField(
-                'Найти задачу...',
-                icon: Icon(Icons.search_rounded),
-              ),
+              const SearchField(),
               const SizedBox(height: 20),
               StatsCard(
                 percent: state.percent,

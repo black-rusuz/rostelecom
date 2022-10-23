@@ -5,6 +5,7 @@ import '../../styles.dart';
 class BaseTextField extends StatelessWidget {
   final String label;
   final TextEditingController? controller;
+  final ValueChanged<String>? onChanged;
   final Icon? icon;
   final int? lines;
 
@@ -12,6 +13,7 @@ class BaseTextField extends StatelessWidget {
     this.label, {
     super.key,
     this.controller,
+    this.onChanged,
     this.icon,
     this.lines,
   });
@@ -24,6 +26,7 @@ class BaseTextField extends StatelessWidget {
       ),
       child: TextField(
         controller: controller,
+        onChanged: onChanged,
         style: const TextStyle(fontSize: 14),
         maxLines: lines ?? 1,
         decoration: InputDecoration(

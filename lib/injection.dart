@@ -13,8 +13,8 @@ void configureDependencies() async => $initGetIt(sl);
 abstract class RegisterModule {
   @Singleton()
   Dio get client => Dio(BaseOptions(
-    sendTimeout: 10 * 1000,
-    connectTimeout: 10 * 1000,
-    receiveTimeout: 10 * 1000,
-  ));
+        sendTimeout: 10 * 1000,
+        connectTimeout: 10 * 1000,
+        receiveTimeout: 10 * 1000,
+      ));
 }

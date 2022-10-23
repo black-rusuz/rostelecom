@@ -23,9 +23,9 @@ class NoteModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() => {
-    'name': name,
-    'description': description,
-  };
+        'name': name,
+        'description': description,
+      };
 
   @override
   List<Object?> get props => [

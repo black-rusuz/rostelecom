@@ -27,3 +27,9 @@ class AddTask extends TasksEvent {
     required this.slaveId,
   });
 }
+
+class FilterBy extends TasksEvent {
+  final String pattern;
+
+  const FilterBy(this.pattern);
+}

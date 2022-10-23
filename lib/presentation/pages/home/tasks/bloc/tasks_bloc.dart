@@ -10,7 +10,6 @@ import '../../../../../data/model/task_model.dart';
 import '../../../../../domain/repository.dart';
 
 part 'tasks_event.dart';
-
 part 'tasks_state.dart';
 
 @injectable
@@ -27,6 +26,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
         (event, emit) async => emit(await _refreshState(event.tasks)));
 
     on<AddTask>(_addTask);
+    on<FilterBy>(_filterTasks);
   }
 
   Future<TasksSuccess> _refreshState(List<TaskModel> tasks) async {
@@ -61,7 +61,6 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
   }
 
   void _addTask(AddTask event, Emitter<TasksState> emit) async {
-    print(event);
     final duration = TaskDuration.fromString(event.duration);
     final task = TaskModel(
       id: 0,
@@ -97,6 +96,15 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
         break;
     }
     return now;
+  }
+
+  void _filterTasks(FilterBy event, Emitter<TasksState> emit) async {
+    emit(await _refreshState(
+      _tasks
+          .where(
+              (e) => e.name.toLowerCase().contains(event.pattern.toLowerCase()))
+          .toList(),
+    ));
   }
 
   @override

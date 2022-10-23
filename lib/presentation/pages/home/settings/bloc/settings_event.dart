@@ -15,5 +15,3 @@ class SetNotification extends SettingsEvent {
 
   SetNotification(this.isActive);
 }
-
-
