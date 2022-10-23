@@ -17,7 +17,7 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  String get url => 'http://192.168.1.217';
+  String get url => 'http://192.168.1.217/api';
 
   // TODO: get from login
   String token =
@@ -31,10 +31,10 @@ class RepositoryImpl extends Repository {
       'email': login,
       'password': password,
     });
-    final user = UserModel.fromJson(response.data);
-
-    currentUser.add(user);
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
+
+    final user = UserModel.fromJson(response.data);
+    currentUser.add(user);
     return user;
   }
 
@@ -46,11 +46,11 @@ class RepositoryImpl extends Repository {
       '$url/add-task',
       data: task.toJson(),
     );
-    final newTask = TaskModel.fromJson(response.data['task']);
-
-    getAllTasks();
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
     Utils.printJson(response.data, true);
+
+    final newTask = TaskModel.fromJson(response.data['task']);
+    getAllTasks();
     return newTask;
   }
 
@@ -59,12 +59,12 @@ class RepositoryImpl extends Repository {
     final sw = Stopwatch()..start();
     debugPrint('ALL TASKS');
     final response = await client.get('$url/all-task');
-    final newTasks =
-        (response.data as List).map((e) => TaskModel.fromJson(e)).toList();
-
-    tasks.add(newTasks);
     debugPrint('CODE ${response.statusCode}\t\tTIME: ${sw.elapsed}');
     Utils.printJson(response.data, true);
+
+    final newTasks =
+        (response.data as List).map((e) => TaskModel.fromJson(e)).toList();
+    tasks.add(newTasks);
     return newTasks;
   }
 
