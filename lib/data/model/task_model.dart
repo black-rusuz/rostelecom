@@ -43,9 +43,11 @@ class TaskModel extends Equatable {
       master:
           json['master'] != null ? UserModel.fromJson(json['master']) : null,
       slave: UserModel.fromJson(json['user_id']),
-      subtasks: (json['subtasks'] as List)
-          .map((e) => SubtaskModel.fromJson(e))
-          .toList(),
+      subtasks: json['subtasks'] != null
+          ? (json['subtasks'] as List)
+              .map((e) => SubtaskModel.fromJson(e))
+              .toList()
+          : [],
     );
   }
 
