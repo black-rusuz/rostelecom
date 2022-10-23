@@ -1,8 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../data/utils.dart';
 import '../../../styles.dart';
+import '../../widgets/base_avatar.dart';
+import '../login/bloc/login_bloc.dart';
 import '../note/note_form.dart';
 import '../task/task_form.dart';
 import 'hidden/hidden_fragment.dart';
@@ -94,13 +96,23 @@ class _HomePageState extends State<HomePage> {
               style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
             ),
             actions: [
-              Padding(
-                padding: const EdgeInsets.all(4),
-                child: ClipOval(
-                  child: CachedNetworkImage(
-                    imageUrl: 'https://github.com/gsusha.png',
-                  ),
-                ),
+              BlocBuilder<LoginBloc, LoginState>(
+                builder: (context, state) {
+                  if (state is LoginSuccess) {
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(4, 4, 30, 4),
+                      child: BaseAvatar(
+                          size: 50,
+                          name: Utils.stringToLetters(state.user.name ?? '')),
+                    );
+                  }
+                  return Padding(
+                    padding: const EdgeInsets.fromLTRB(4, 4, 30, 4),
+                    child: BaseAvatar(
+                        size: 50,
+                        name: Utils.stringToLetters('JD')),
+                  );
+                },
               ),
             ],
           ),

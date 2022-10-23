@@ -22,4 +22,8 @@ class Utils {
     final formatted = pattern.format(date);
     return formatted;
   }
+
+  static String stringToLetters(String name) {
+    return name.split(' ').map((e) => e[0]).join();
+  }
 }

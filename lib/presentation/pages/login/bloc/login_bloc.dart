@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../data/model/user_model.dart';
 import '../../../../domain/repository.dart';
 
 part 'login_event.dart';
@@ -19,8 +20,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   void _auth(LoginAuth event, Emitter<LoginState> emit) async {
     try {
-      await _repository.login(event.login, event.password);
-      emit(LoginSuccess());
+      final user = await _repository.login(event.login, event.password);
+      emit(LoginSuccess(user));
     } on DioError catch (e) {
       emit(LoginError(e.message));
     }
